@@ -114,6 +114,23 @@
     .btn-ghost:hover{border-color:#4a7fd4;color:#4a7fd4;}
     .hidden{display:none!important;}
 
+    /* GAP FILL (Texte à trou) */
+    .gap-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;background:#f4f7ff;border:2px solid #e0e8f8;border-radius:16px;padding:22px 16px;margin-bottom:6px;}
+    .gap-slot{padding:9px 14px;border-radius:11px;font-size:1.05rem;font-weight:700;color:#1e2a3a;background:white;border:1.5px solid #e0e8f8;min-width:58px;text-align:center;}
+    .gap-slot.fr{font-style:italic;font-weight:500;color:#6688aa;}
+    .gap-slot.blank{border:2px dashed #4a7fd4;background:#eef5ff;color:#9db4d8;min-width:92px;}
+    .gap-slot.blank.filled-ok{border-style:solid;border-color:#3a9a5a;background:#d8f0e4;color:#1a5a2a;}
+    .gap-slot.blank.filled-ko{border-style:solid;border-color:#d95f5f;background:#fdeaea;color:#852020;}
+    .gap-arrow{color:#bbc;font-weight:700;font-size:1rem;}
+    .gap-hint{text-align:center;font-size:0.85rem;color:#889;margin-bottom:14px;}
+    .gap-bank{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;}
+    .gap-chip{padding:11px 16px;border-radius:12px;border:2px solid #e0e8f8;background:white;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:600;color:#1e2a3a;transition:all .16s;}
+    .gap-chip:hover:not(:disabled){border-color:#4a7fd4;transform:translateY(-2px);}
+    .gap-chip.correct{background:#d8f0e4;border-color:#3a9a5a;color:#1a5a2a;}
+    .gap-chip.wrong{background:#fdeaea;border-color:#d95f5f;color:#852020;}
+    .gap-chip:disabled{cursor:default;opacity:.5;}
+    .gap-chip.correct:disabled,.gap-chip.wrong:disabled{opacity:1;}
+
     /* RESULTS */
     .results-wrap{text-align:center;}
     .score-ring{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#88b4f0,#4a7fd4);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:white;flex-direction:column;box-shadow:0 10px 28px rgba(74,127,212,.3);}
@@ -159,6 +176,45 @@
     .fscore-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;}
     .fscore-num.green{color:#3a9950;}.fscore-num.orange{color:#e07a40;}
     .fscore-label{font-size:0.75rem;color:#aab;margin-top:3px;}
+
+    /* ACCORDION (théorie temps + grammaire) */
+    .acc-item{border:1.5px solid #e0e8f8;border-radius:14px;margin-bottom:10px;overflow:hidden;}
+    .acc-head{display:flex;align-items:center;gap:12px;padding:15px 16px;cursor:pointer;background:#f4f7ff;transition:background .18s;}
+    .acc-head:hover{background:#eef5ff;}
+    .acc-item.open .acc-head{background:#eef5ff;}
+    .acc-emoji{font-size:1.3rem;flex-shrink:0;}
+    .acc-titles{flex:1;}
+    .acc-title{font-weight:700;font-size:0.95rem;color:#1e2a3a;}
+    .acc-title small{display:block;font-weight:400;font-size:0.78rem;color:#889;font-style:italic;margin-top:1px;}
+    .acc-chevron{color:#4a7fd4;font-size:1rem;transition:transform .25s;flex-shrink:0;}
+    .acc-item.open .acc-chevron{transform:rotate(180deg);}
+    .acc-body{display:none;padding:4px 16px 16px;}
+    .acc-item.open .acc-body{display:block;}
+    .acc-use{font-size:0.88rem;color:#2c3a50;line-height:1.6;margin:10px 0;}
+    .acc-struct{background:#eef5ff;border-left:3px solid #4a7fd4;border-radius:8px;padding:9px 12px;font-size:0.83rem;color:#3a6bbf;font-weight:600;margin-bottom:12px;}
+    .acc-ex{display:flex;flex-direction:column;padding:8px 12px;border-bottom:1px solid #f0f4ff;}
+    .acc-ex:last-child{border-bottom:none;}
+    .ex-en{font-weight:600;color:#1e2a3a;font-size:0.87rem;}
+    .ex-fr{color:#889;font-style:italic;font-size:0.82rem;margin-top:1px;}
+    .acc-examples{border:1px solid #f0f4ff;border-radius:10px;margin-bottom:12px;}
+    .acc-tip{background:#fff8ec;border:1px solid #f5e2bf;border-radius:10px;padding:10px 13px;font-size:0.82rem;color:#8a6d3b;line-height:1.55;}
+
+    /* THEME CARDS (vocab) */
+    .theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px;}
+    .theme-card{background:#f0f5ff;border:2px solid #d8e4f8;border-radius:16px;padding:20px 14px;text-align:center;cursor:pointer;transition:all .2s;}
+    .theme-card:hover{border-color:#4a7fd4;background:white;transform:translateY(-2px);}
+    .theme-icon{font-size:2rem;margin-bottom:8px;}
+    .theme-name{font-weight:700;font-size:0.9rem;color:#1e2a3a;margin-bottom:2px;}
+    .theme-count{font-size:0.72rem;color:#aab;}
+
+    /* WORD FICHES */
+    .word-fiche{border:1.5px solid #e0e8f8;border-radius:14px;padding:14px 16px;margin-bottom:10px;}
+    .word-top{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+    .word-en{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;color:#1e2a3a;}
+    .word-fr{color:#4a7fd4;font-style:italic;font-size:0.92rem;}
+    .word-ex{font-size:0.82rem;color:#667;line-height:1.5;}
+    .word-ex .we{color:#2c3a50;font-weight:500;}
+    .word-ex .wf{color:#99a;font-style:italic;}
   </style>
 </head>
 <body>
@@ -176,33 +232,33 @@
           <div class="block-icon">📝</div>
           <div>
             <div class="block-title">Bloc 1 — Verbes Irréguliers</div>
-            <div class="block-desc">66 verbes · Théorie, Flashcards, QCM, Association</div>
+            <div class="block-desc">66 verbes · Théorie, Flashcards, QCM, Association, Texte à trou</div>
           </div>
           <span class="block-badge blue">Actif</span>
         </div>
-        <div class="block-card locked">
+        <div class="block-card" onclick="show('b2-menu')">
           <div class="block-icon">🕐</div>
           <div>
             <div class="block-title">Bloc 2 — Les Temps Verbaux</div>
-            <div class="block-desc">Present, Past, Future, Conditional...</div>
+            <div class="block-desc">8 temps · Théorie + 15 exercices</div>
           </div>
-          <span class="block-badge gray">Bientôt</span>
+          <span class="block-badge blue">Actif</span>
         </div>
-        <div class="block-card locked">
+        <div class="block-card" onclick="startVocab()">
           <div class="block-icon">💬</div>
           <div>
             <div class="block-title">Bloc 3 — Vocabulaire Thématique</div>
-            <div class="block-desc">Travail, voyages, shopping, émotions...</div>
+            <div class="block-desc">7 thèmes · 84 mots · Fiches, Flashcards, QCM, Association</div>
           </div>
-          <span class="block-badge gray">Bientôt</span>
+          <span class="block-badge blue">Actif</span>
         </div>
-        <div class="block-card locked">
+        <div class="block-card" onclick="show('b4-menu')">
           <div class="block-icon">🏗️</div>
           <div>
             <div class="block-title">Bloc 4 — Grammaire</div>
-            <div class="block-desc">Articles, pronoms, auxiliaires...</div>
+            <div class="block-desc">8 règles · Théorie + QCM</div>
           </div>
-          <span class="block-badge gray">Bientôt</span>
+          <span class="block-badge blue">Actif</span>
         </div>
       </div>
     </div>
@@ -235,6 +291,11 @@
           <div class="act-icon">🔗</div>
           <div class="act-title">Association</div>
           <div class="act-desc">Relie chaque verbe à son prétérit</div>
+        </div>
+        <div class="act-card" onclick="startGap()">
+          <div class="act-icon">🧩</div>
+          <div class="act-title">Texte à trou</div>
+          <div class="act-desc">Complète la case manquante : base, prétérit, PP ou traduction</div>
         </div>
       </div>
     </div>
@@ -404,6 +465,272 @@
     </div>
   </div>
 
+  <!-- GAP FILL -->
+  <div class="screen" id="gap-screen">
+    <div class="card">
+      <div class="top-bar">
+        <div class="prog-wrap"><div class="prog-fill" id="g-prog"></div></div>
+        <div class="counter" id="g-counter">1 / 12</div>
+      </div>
+      <div class="meta-row">
+        <span class="q-tag" id="g-tag">Prétérit</span>
+        <span class="q-score" id="g-score">Score : 0</span>
+      </div>
+      <div class="gap-hint" id="g-hint">Complète la case manquante</div>
+      <div class="gap-line" id="g-line"></div>
+      <div class="feedback" id="g-feedback"></div>
+      <div class="gap-bank" id="g-bank" style="margin-top:14px"></div>
+      <div class="btn-row">
+        <button class="btn-primary hidden" id="g-next" onclick="nextGap()">Suivant →</button>
+        <button class="btn-ghost" onclick="show('b1-menu')">← Bloc 1</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAP RESULTS -->
+  <div class="screen" id="gap-results">
+    <div class="card results-wrap">
+      <div class="score-ring"><div class="score-num" id="gr-num">0</div><div class="score-tot" id="gr-tot">/ 12</div></div>
+      <div class="res-title" id="gr-title">Résultat</div>
+      <div class="res-sub" id="gr-sub"></div>
+      <div class="res-msg" id="gr-msg"></div>
+      <div class="action-row">
+        <button class="btn-primary" onclick="startGap()">Rejouer →</button>
+        <button class="btn-ghost" onclick="show('b1-menu')">← Bloc 1</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ BLOC 2 — LES TEMPS VERBAUX ══════════ -->
+  <div class="screen" id="b2-menu">
+    <button class="back-link" onclick="show('eng-home')" style="background:none;border:none;cursor:pointer;">← Blocs</button>
+    <div class="card">
+      <div style="font-size:1.8rem;margin-bottom:10px">🕐</div>
+      <h2>Les Temps <span>Verbaux</span></h2>
+      <p class="sub">Choisis ton activité</p>
+      <div class="activity-grid">
+        <div class="act-card" onclick="startTenseTheory()">
+          <div class="act-icon">📖</div>
+          <div class="act-title">Théorie</div>
+          <div class="act-desc">Les 8 temps expliqués simplement</div>
+        </div>
+        <div class="act-card" onclick="startTenseQCM()">
+          <div class="act-icon">🎯</div>
+          <div class="act-title">Exercices</div>
+          <div class="act-desc">15 phrases à compléter</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen" id="b2-theory">
+    <button class="back-link" onclick="show('b2-menu')" style="background:none;border:none;cursor:pointer;">← Bloc 2</button>
+    <div class="card">
+      <h2>📖 <span>Les Temps</span></h2>
+      <p class="sub">8 temps essentiels · appuie pour ouvrir</p>
+      <div id="tense-accordion"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ BLOC 3 — VOCABULAIRE ══════════ -->
+  <div class="screen" id="b3-menu">
+    <button class="back-link" onclick="show('eng-home')" style="background:none;border:none;cursor:pointer;">← Blocs</button>
+    <div class="card">
+      <div style="font-size:1.8rem;margin-bottom:10px">💬</div>
+      <h2>Vocabulaire <span>Thématique</span></h2>
+      <p class="sub">Choisis un thème</p>
+      <div class="theme-grid" id="theme-grid"></div>
+    </div>
+  </div>
+
+  <div class="screen" id="b3-theme">
+    <button class="back-link" onclick="show('b3-menu')" style="background:none;border:none;cursor:pointer;">← Thèmes</button>
+    <div class="card">
+      <div style="font-size:1.8rem;margin-bottom:10px" id="bt-icon">💬</div>
+      <h2 id="bt-title"><span>Thème</span></h2>
+      <p class="sub">12 mots · choisis ton activité</p>
+      <div class="activity-grid">
+        <div class="act-card" onclick="startVocabFiches()">
+          <div class="act-icon">📖</div>
+          <div class="act-title">Fiches</div>
+          <div class="act-desc">Les 12 mots avec exemples</div>
+        </div>
+        <div class="act-card" onclick="startVocabFlash()">
+          <div class="act-icon">🃏</div>
+          <div class="act-title">Flashcards</div>
+          <div class="act-desc">Anglais → Français</div>
+        </div>
+        <div class="act-card" onclick="startVocabQCM()">
+          <div class="act-icon">🎯</div>
+          <div class="act-title">QCM</div>
+          <div class="act-desc">Teste-toi dans les 2 sens</div>
+        </div>
+        <div class="act-card" onclick="startVocabMatch()">
+          <div class="act-icon">🔗</div>
+          <div class="act-title">Association</div>
+          <div class="act-desc">Relie chaque mot à sa traduction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen" id="b3-fiches">
+    <button class="back-link" onclick="show('b3-theme')" style="background:none;border:none;cursor:pointer;">← Retour</button>
+    <div class="card">
+      <h2>📖 <span id="vf-theme-title">Fiches</span></h2>
+      <p class="sub">12 mots essentiels</p>
+      <div id="fiche-list"></div>
+    </div>
+  </div>
+
+  <div class="screen" id="b3-flash">
+    <div class="card">
+      <div class="top-bar">
+        <button class="back-btn2" onclick="show('b3-theme')">← Retour</button>
+        <div class="prog-wrap"><div class="prog-fill" id="vc-prog"></div></div>
+        <div class="counter" id="vc-counter">1 / 12</div>
+      </div>
+      <div class="flip-area" onclick="flipVocab()">
+        <div class="flip-card" id="vc-card">
+          <div class="flip-face flip-front">
+            <div>
+              <div class="flip-label">🇬🇧 Anglais — Quelle traduction ?</div>
+              <div class="flip-base" id="vc-en"></div>
+              <div class="flip-fr" id="vc-exen"></div>
+            </div>
+            <div class="flip-tap">Appuie pour révéler ↩</div>
+          </div>
+          <div class="flip-face flip-back">
+            <div>
+              <div class="flip-label">🇫🇷 Français</div>
+              <div class="flip-past" id="vc-fr"></div>
+              <div style="font-size:0.82rem;color:#889;margin-top:8px;font-style:italic" id="vc-exfr"></div>
+            </div>
+            <div class="flip-tap">Suivant ↓</div>
+          </div>
+        </div>
+      </div>
+      <div class="flash-buttons" id="vc-buttons" style="display:none">
+        <button class="btn-knew" onclick="nextVocabCard()">Mot suivant →</button>
+      </div>
+      <div style="text-align:center;font-size:0.78rem;color:#bbc;margin-top:12px" id="vc-instr">Appuie sur la carte pour la retourner</div>
+    </div>
+  </div>
+
+  <div class="screen" id="b3-match">
+    <div class="card">
+      <div class="top-bar">
+        <div class="prog-wrap"><div class="prog-fill" id="vm-prog"></div></div>
+        <div class="counter" id="vm-counter">Tour 1 / 2</div>
+      </div>
+      <div class="match-header">
+        <div class="round-badge" id="vm-round-badge">Tour 1 · 6 paires</div>
+        <div class="match-title">Relie chaque mot à sa traduction</div>
+        <div class="match-sub">Tape un mot anglais, puis sa traduction</div>
+      </div>
+      <div class="match-score-row">
+        <div class="mscore"><div class="mscore-num green" id="vm-correct">0</div><div class="mscore-label">Correct ✓</div></div>
+        <div class="mscore"><div class="mscore-num blue" id="vm-total">0</div><div class="mscore-label">Tentatives</div></div>
+      </div>
+      <div class="match-grid">
+        <div class="match-col" id="vm-left"></div>
+        <div class="match-col" id="vm-right"></div>
+      </div>
+      <div class="btn-row" id="vm-next-row" style="display:none">
+        <button class="btn-primary" onclick="nextVocabRound()">Tour suivant →</button>
+        <button class="btn-ghost" onclick="show('b3-theme')">← Retour</button>
+      </div>
+      <button class="btn-ghost" id="vm-quit-btn" onclick="show('b3-theme')" style="margin-top:12px">← Quitter</button>
+    </div>
+  </div>
+
+  <div class="screen" id="b3-match-results">
+    <div class="card results-wrap">
+      <div style="font-size:2.2rem;margin-bottom:12px">🔗</div>
+      <h2 style="font-size:1.5rem;margin-bottom:6px">Jeu terminé !</h2>
+      <div class="match-score-row">
+        <div class="mscore"><div class="mscore-num green" id="vmr-correct">0</div><div class="mscore-label">Corrects 1er essai</div></div>
+        <div class="mscore"><div class="mscore-num blue" id="vmr-total">0</div><div class="mscore-label">Tentatives totales</div></div>
+      </div>
+      <div class="res-msg" id="vmr-msg"></div>
+      <div class="action-row">
+        <button class="btn-primary" onclick="startVocabMatch()">Rejouer →</button>
+        <button class="btn-ghost" onclick="show('b3-theme')">← Retour</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ BLOC 4 — GRAMMAIRE ══════════ -->
+  <div class="screen" id="b4-menu">
+    <button class="back-link" onclick="show('eng-home')" style="background:none;border:none;cursor:pointer;">← Blocs</button>
+    <div class="card">
+      <div style="font-size:1.8rem;margin-bottom:10px">🏗️</div>
+      <h2>La <span>Grammaire</span></h2>
+      <p class="sub">Choisis ton activité</p>
+      <div class="activity-grid">
+        <div class="act-card" onclick="startGrammarTheory()">
+          <div class="act-icon">📖</div>
+          <div class="act-title">Théorie</div>
+          <div class="act-desc">8 règles de base expliquées</div>
+        </div>
+        <div class="act-card" onclick="startGrammarQCM()">
+          <div class="act-icon">🎯</div>
+          <div class="act-title">QCM</div>
+          <div class="act-desc">15 questions parmi 32</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen" id="b4-theory">
+    <button class="back-link" onclick="show('b4-menu')" style="background:none;border:none;cursor:pointer;">← Bloc 4</button>
+    <div class="card">
+      <h2>📖 <span>Grammaire</span></h2>
+      <p class="sub">8 règles · appuie pour ouvrir</p>
+      <div id="grammar-accordion"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ QCM GÉNÉRIQUE (Blocs 2, 3, 4) ══════════ -->
+  <div class="screen" id="gen-qcm">
+    <div class="card">
+      <div class="top-bar">
+        <div class="prog-wrap"><div class="prog-fill" id="gq-prog"></div></div>
+        <div class="counter" id="gq-counter">1 / 15</div>
+      </div>
+      <div class="meta-row">
+        <span class="q-tag" id="gq-tag">Question</span>
+        <span class="q-score" id="gq-score">Score : 0</span>
+      </div>
+      <div class="question" id="gq-text"></div>
+      <div style="font-size:0.85rem;color:#889;font-style:italic;margin:-14px 0 18px" id="gq-fr"></div>
+      <div class="answers" id="gq-answers"></div>
+      <div class="feedback" id="gq-feedback"></div>
+      <div class="btn-row">
+        <button class="btn-primary hidden" id="gq-next" onclick="nextGen()">Question suivante →</button>
+        <button class="btn-ghost" id="gq-back" onclick="show('eng-home')">← Retour</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen" id="gen-results">
+    <div class="card results-wrap">
+      <div class="score-ring"><div class="score-num" id="gres-num">0</div><div class="score-tot" id="gres-tot">/ 15</div></div>
+      <div class="res-title" id="gres-title">Résultat</div>
+      <div class="res-sub" id="gres-sub"></div>
+      <div class="res-msg" id="gres-msg"></div>
+      <div class="action-row">
+        <button class="btn-primary" id="gres-replay" onclick="show('eng-home')">Rejouer →</button>
+        <button class="btn-ghost" id="gres-back" onclick="show('eng-home')">← Retour</button>
+        <button class="btn-ghost" onclick="toggleGenDetail()">Voir le détail</button>
+      </div>
+      <div id="gres-detail" style="display:none">
+        <div style="font-size:0.75rem;font-weight:700;color:#bbc;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Détail des réponses</div>
+        <div class="detail-list" id="gres-detail-list"></div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <script>
 /* ─── DATA ─── */
@@ -475,6 +802,189 @@ const VERBS=[
   {base:"win",past:"won",pp:"won",fr:"gagner"},
   {base:"write",past:"wrote",pp:"written",fr:"écrire"},
 ];
+
+/* ═══ DONNÉES BLOCS 2-4 ═══ */
+const TENSE_DATA={
+tenses:[
+{en_name:"Present Simple",fr_name:"Le présent simple",use:"On l'utilise pour parler des habitudes, des routines et des choses toujours vraies. C'est le temps de tous les jours.",structure:"Sujet + verbe (+ -s à la 3e personne : he/she/it)",examples:[{en:"I drink coffee every morning.",fr:"Je bois du café tous les matins."},{en:"She works in a bank.",fr:"Elle travaille dans une banque."},{en:"We live in France.",fr:"Nous vivons en France."},{en:"They play football on Sundays.",fr:"Ils jouent au football le dimanche."},{en:"The shop opens at nine.",fr:"Le magasin ouvre à neuf heures."}],tip:"N'oublie pas le petit -s à la 3e personne (he, she, it) ! On dit 'she works' et non 'she work'. C'est une erreur très fréquente chez les francophones."},
+{en_name:"Present Continuous",fr_name:"Le présent continu (en train de)",use:"On l'utilise pour une action qui se passe maintenant, au moment où l'on parle. En français, on dit souvent 'être en train de'.",structure:"Sujet + am/is/are + verbe+ing",examples:[{en:"I am eating now.",fr:"Je suis en train de manger maintenant."},{en:"She is reading a book.",fr:"Elle est en train de lire un livre."},{en:"We are watching a film.",fr:"Nous sommes en train de regarder un film."},{en:"They are playing outside.",fr:"Ils sont en train de jouer dehors."},{en:"He is cooking dinner.",fr:"Il est en train de préparer le dîner."}],tip:"En anglais, ce temps existe vraiment et s'utilise beaucoup. En français on dit simplement 'je mange', mais en anglais 'I am eating' (maintenant) est différent de 'I eat' (habitude). Ne les mélange pas."},
+{en_name:"Past Simple",fr_name:"Le passé simple (prétérit)",use:"On l'utilise pour une action terminée dans le passé, à un moment précis (hier, la semaine dernière, en 2020).",structure:"Sujet + verbe au passé (verbe+ed pour les verbes réguliers)",examples:[{en:"I watched a film yesterday.",fr:"J'ai regardé un film hier."},{en:"She visited her mother last week.",fr:"Elle a rendu visite à sa mère la semaine dernière."},{en:"We ate at a restaurant.",fr:"Nous avons mangé au restaurant."},{en:"They went to London.",fr:"Ils sont allés à Londres."},{en:"He bought a new car.",fr:"Il a acheté une nouvelle voiture."}],tip:"Attention : beaucoup de verbes courants sont irréguliers et ne prennent pas -ed. On dit 'go' vers 'went', 'buy' vers 'bought', 'eat' vers 'ate'. Il faut les apprendre par cœur, petit à petit."},
+{en_name:"Past Continuous",fr_name:"Le passé continu (étais en train de)",use:"On l'utilise pour une action qui était en cours à un moment du passé, souvent interrompue par une autre action.",structure:"Sujet + was/were + verbe+ing",examples:[{en:"I was sleeping when you called.",fr:"Je dormais quand tu as appelé."},{en:"She was cooking at eight o'clock.",fr:"Elle était en train de cuisiner à huit heures."},{en:"We were watching TV.",fr:"Nous étions en train de regarder la télé."},{en:"They were walking in the park.",fr:"Ils se promenaient dans le parc."},{en:"It was raining this morning.",fr:"Il pleuvait ce matin."}],tip:"On utilise 'was' avec I/he/she/it et 'were' avec you/we/they. Ne dis pas 'I were' ni 'they was'. C'est un piège classique."},
+{en_name:"Present Perfect",fr_name:"Le present perfect (passé composé lié au présent)",use:"On l'utilise pour une action passée qui a un lien avec le présent, ou une expérience de vie sans dire quand exactement.",structure:"Sujet + have/has + participe passé",examples:[{en:"I have finished my work.",fr:"J'ai fini mon travail."},{en:"She has visited Spain.",fr:"Elle a déjà visité l'Espagne."},{en:"We have lived here for ten years.",fr:"Nous vivons ici depuis dix ans."},{en:"They have never eaten sushi.",fr:"Ils n'ont jamais mangé de sushi."},{en:"He has just arrived.",fr:"Il vient d'arriver."}],tip:"Ne confonds pas avec le passé simple. Si tu dis QUAND (hier, en 2020), utilise le passé simple. Si tu ne dis pas quand ou si le lien avec maintenant compte, utilise le present perfect. On dit 'I have seen it' mais 'I saw it yesterday'."},
+{en_name:"Future with will",fr_name:"Le futur avec will",use:"On l'utilise pour une décision prise sur le moment, une promesse, ou une prédiction générale sur l'avenir.",structure:"Sujet + will + verbe (base, sans -s ni -ing)",examples:[{en:"I will help you.",fr:"Je vais t'aider. / Je t'aiderai."},{en:"She will call you tomorrow.",fr:"Elle t'appellera demain."},{en:"We will see.",fr:"On verra."},{en:"They will be happy.",fr:"Ils seront contents."},{en:"It will rain tonight.",fr:"Il pleuvra ce soir."}],tip:"Après 'will', le verbe reste à la base : on dit 'she will come' et non 'she will comes'. Pas de -s après will !"},
+{en_name:"Future with going to",fr_name:"Le futur avec going to (aller faire)",use:"On l'utilise pour un projet déjà décidé ou quelque chose que l'on voit venir. En français, c'est proche de 'je vais faire'.",structure:"Sujet + am/is/are + going to + verbe",examples:[{en:"I am going to buy a car.",fr:"Je vais acheter une voiture."},{en:"She is going to travel next month.",fr:"Elle va voyager le mois prochain."},{en:"We are going to move house.",fr:"Nous allons déménager."},{en:"They are going to get married.",fr:"Ils vont se marier."},{en:"It is going to rain.",fr:"Il va pleuvoir."}],tip:"'going to' sert pour un plan déjà décidé, 'will' pour une décision prise sur le moment. Si tu as déjà décidé, utilise 'going to'. Ne dis pas 'I will going to'."},
+{en_name:"Conditional",fr_name:"Le conditionnel (would)",use:"On l'utilise pour parler de situations imaginaires, faire des demandes polies, ou dire ce que l'on ferait 'si'.",structure:"Sujet + would + verbe (base)",examples:[{en:"I would like a coffee, please.",fr:"Je voudrais un café, s'il vous plaît."},{en:"She would love to come.",fr:"Elle adorerait venir."},{en:"We would buy a house if we had money.",fr:"Nous achèterions une maison si nous avions de l'argent."},{en:"Would you help me?",fr:"Est-ce que tu m'aiderais ?"},{en:"They would be happy to help.",fr:"Ils seraient heureux d'aider."}],tip:"'I would like' est la façon polie de dire 'je veux'. C'est très utile au restaurant ou en magasin. Après 'would', le verbe reste à la base : 'she would like', pas 'she would likes'."}
+],
+exercises:[
+{sentence:"She ___ to school every day.",fr:"Elle va à l'école tous les jours.",choices:["go","goes","going","went"],answer:"goes",exp:"Habitude au présent simple, 3e personne (she) : on ajoute -s, donc 'goes'."},
+{sentence:"I ___ coffee right now.",fr:"Je suis en train de boire du café en ce moment.",choices:["drink","drinks","am drinking","drank"],answer:"am drinking",exp:"Action qui se passe maintenant : présent continu 'am + verbe+ing'."},
+{sentence:"We ___ a film yesterday.",fr:"Nous avons regardé un film hier.",choices:["watch","watched","are watching","will watch"],answer:"watched",exp:"'Yesterday' indique un moment passé précis : passé simple, verbe régulier + ed."},
+{sentence:"He ___ dinner when I arrived.",fr:"Il était en train de préparer le dîner quand je suis arrivé.",choices:["cooks","cooked","was cooking","is cooking"],answer:"was cooking",exp:"Action en cours dans le passé : passé continu 'was + verbe+ing'."},
+{sentence:"I ___ my homework. It's on the table.",fr:"J'ai fini mes devoirs. Ils sont sur la table.",choices:["finish","finished","have finished","was finishing"],answer:"have finished",exp:"Action passée avec un résultat présent, sans dire quand : present perfect 'have + participe passé'."},
+{sentence:"Don't worry, I ___ help you.",fr:"Ne t'inquiète pas, je vais t'aider.",choices:["will","am going","would","help"],answer:"will",exp:"Décision prise sur le moment (promesse) : futur avec 'will + verbe'."},
+{sentence:"They ___ buy a new house next year.",fr:"Ils vont acheter une nouvelle maison l'année prochaine.",choices:["will going to","are going to","go to","would"],answer:"are going to",exp:"Projet déjà décidé : 'are going to + verbe'."},
+{sentence:"I ___ like a glass of water, please.",fr:"Je voudrais un verre d'eau, s'il vous plaît.",choices:["will","would","want","am"],answer:"would",exp:"Demande polie : conditionnel 'would like' = 'je voudrais'."},
+{sentence:"My brother ___ in a hospital.",fr:"Mon frère travaille dans un hôpital.",choices:["work","works","working","worked"],answer:"works",exp:"Fait toujours vrai au présent simple, 3e personne : 'works' avec -s."},
+{sentence:"Look! The baby ___ .",fr:"Regarde ! Le bébé est en train de dormir.",choices:["sleeps","sleep","is sleeping","slept"],answer:"is sleeping",exp:"Action visible maintenant ('Look!') : présent continu 'is + sleeping'."},
+{sentence:"She ___ to London last summer.",fr:"Elle est allée à Londres l'été dernier.",choices:["go","goes","went","has gone"],answer:"went",exp:"'Last summer' = moment passé précis. 'go' est irrégulier : le passé est 'went'."},
+{sentence:"We ___ in the park when it started to rain.",fr:"Nous nous promenions dans le parc quand il a commencé à pleuvoir.",choices:["walk","walked","were walking","will walk"],answer:"were walking",exp:"Action en cours dans le passé, avec 'we' : passé continu 'were + walking'."},
+{sentence:"I have ___ eaten sushi. I want to try it.",fr:"Je n'ai jamais mangé de sushi. Je veux essayer.",choices:["never","yesterday","tomorrow","now"],answer:"never",exp:"Avec le present perfect, 'never' exprime une expérience jamais vécue : 'have never eaten'."},
+{sentence:"It's cloudy. I think it ___ rain.",fr:"C'est nuageux. Je pense qu'il va pleuvoir.",choices:["is going to","will going to","would","goes to"],answer:"is going to",exp:"On voit venir la pluie grâce à un indice présent : 'is going to + verbe'."},
+{sentence:"___ you help me, please?",fr:"Est-ce que tu m'aiderais, s'il te plaît ?",choices:["Will","Would","Are","Do"],answer:"Would",exp:"Demande polie au conditionnel : 'Would you help me?'"}
+]
+};
+/* VOCAB_DATA_HERE */
+const VOCAB_DATA={themes:[
+{name:"Le Travail",icon:"💼",words:[
+{en:"job",fr:"un emploi",ex_en:"I have a new job.",ex_fr:"J'ai un nouvel emploi."},
+{en:"work",fr:"le travail",ex_en:"I go to work by bus.",ex_fr:"Je vais au travail en bus."},
+{en:"office",fr:"le bureau",ex_en:"My office is in the city center.",ex_fr:"Mon bureau est dans le centre-ville."},
+{en:"boss",fr:"le patron",ex_en:"My boss is very kind.",ex_fr:"Mon patron est très gentil."},
+{en:"meeting",fr:"une réunion",ex_en:"We have a meeting today.",ex_fr:"Nous avons une réunion aujourd'hui."},
+{en:"colleague",fr:"un collègue",ex_en:"She is my colleague.",ex_fr:"C'est ma collègue."},
+{en:"salary",fr:"le salaire",ex_en:"My salary is good.",ex_fr:"Mon salaire est bon."},
+{en:"email",fr:"un e-mail",ex_en:"I send an email.",ex_fr:"J'envoie un e-mail."},
+{en:"computer",fr:"un ordinateur",ex_en:"I work on my computer.",ex_fr:"Je travaille sur mon ordinateur."},
+{en:"break",fr:"une pause",ex_en:"Let's take a break.",ex_fr:"Faisons une pause."},
+{en:"team",fr:"une équipe",ex_en:"I like my team.",ex_fr:"J'aime mon équipe."},
+{en:"busy",fr:"occupé",ex_en:"I am busy this morning.",ex_fr:"Je suis occupé ce matin."}
+]},
+{name:"Les Voyages",icon:"✈️",words:[
+{en:"trip",fr:"un voyage",ex_en:"Have a nice trip!",ex_fr:"Bon voyage !"},
+{en:"airport",fr:"l'aéroport",ex_en:"The airport is big.",ex_fr:"L'aéroport est grand."},
+{en:"plane",fr:"l'avion",ex_en:"The plane is late.",ex_fr:"L'avion est en retard."},
+{en:"ticket",fr:"un billet",ex_en:"I buy a ticket.",ex_fr:"J'achète un billet."},
+{en:"luggage",fr:"les bagages",ex_en:"My luggage is heavy.",ex_fr:"Mes bagages sont lourds."},
+{en:"hotel",fr:"un hôtel",ex_en:"The hotel is nice.",ex_fr:"L'hôtel est agréable."},
+{en:"passport",fr:"un passeport",ex_en:"Here is my passport.",ex_fr:"Voici mon passeport."},
+{en:"map",fr:"une carte",ex_en:"I need a map.",ex_fr:"J'ai besoin d'une carte."},
+{en:"train",fr:"le train",ex_en:"The train is fast.",ex_fr:"Le train est rapide."},
+{en:"beach",fr:"la plage",ex_en:"We go to the beach.",ex_fr:"Nous allons à la plage."},
+{en:"holiday",fr:"les vacances",ex_en:"I am on holiday.",ex_fr:"Je suis en vacances."},
+{en:"suitcase",fr:"une valise",ex_en:"My suitcase is full.",ex_fr:"Ma valise est pleine."}
+]},
+{name:"Le Shopping",icon:"🛍️",words:[
+{en:"shop",fr:"un magasin",ex_en:"The shop is open.",ex_fr:"Le magasin est ouvert."},
+{en:"price",fr:"le prix",ex_en:"What is the price?",ex_fr:"Quel est le prix ?"},
+{en:"money",fr:"l'argent",ex_en:"I have no money.",ex_fr:"Je n'ai pas d'argent."},
+{en:"cheap",fr:"bon marché",ex_en:"This bag is cheap.",ex_fr:"Ce sac est bon marché."},
+{en:"expensive",fr:"cher",ex_en:"The shoes are expensive.",ex_fr:"Les chaussures sont chères."},
+{en:"buy",fr:"acheter",ex_en:"I want to buy bread.",ex_fr:"Je veux acheter du pain."},
+{en:"pay",fr:"payer",ex_en:"I pay by card.",ex_fr:"Je paie par carte."},
+{en:"sale",fr:"les soldes",ex_en:"The dress is on sale.",ex_fr:"La robe est en soldes."},
+{en:"change",fr:"la monnaie",ex_en:"Here is your change.",ex_fr:"Voici votre monnaie."},
+{en:"size",fr:"la taille",ex_en:"What is your size?",ex_fr:"Quelle est votre taille ?"},
+{en:"cash",fr:"les espèces",ex_en:"I pay in cash.",ex_fr:"Je paie en espèces."},
+{en:"bag",fr:"un sac",ex_en:"I need a bag, please.",ex_fr:"J'ai besoin d'un sac, s'il vous plaît."}
+]},
+{name:"La Nourriture",icon:"🍽️",words:[
+{en:"food",fr:"la nourriture",ex_en:"The food is good.",ex_fr:"La nourriture est bonne."},
+{en:"breakfast",fr:"le petit-déjeuner",ex_en:"I eat breakfast at seven.",ex_fr:"Je prends le petit-déjeuner à sept heures."},
+{en:"lunch",fr:"le déjeuner",ex_en:"Lunch is ready.",ex_fr:"Le déjeuner est prêt."},
+{en:"dinner",fr:"le dîner",ex_en:"We have dinner at eight.",ex_fr:"Nous dînons à huit heures."},
+{en:"bread",fr:"le pain",ex_en:"I like fresh bread.",ex_fr:"J'aime le pain frais."},
+{en:"water",fr:"l'eau",ex_en:"Can I have some water?",ex_fr:"Puis-je avoir de l'eau ?"},
+{en:"coffee",fr:"le café",ex_en:"I drink coffee in the morning.",ex_fr:"Je bois du café le matin."},
+{en:"fruit",fr:"les fruits",ex_en:"I eat a lot of fruit.",ex_fr:"Je mange beaucoup de fruits."},
+{en:"meat",fr:"la viande",ex_en:"I don't eat meat.",ex_fr:"Je ne mange pas de viande."},
+{en:"hungry",fr:"avoir faim",ex_en:"I am hungry.",ex_fr:"J'ai faim."},
+{en:"tasty",fr:"délicieux",ex_en:"This soup is tasty.",ex_fr:"Cette soupe est délicieuse."},
+{en:"restaurant",fr:"un restaurant",ex_en:"The restaurant is full.",ex_fr:"Le restaurant est plein."}
+]},
+{name:"Les Émotions",icon:"😊",words:[
+{en:"happy",fr:"heureux",ex_en:"I am very happy today.",ex_fr:"Je suis très heureux aujourd'hui."},
+{en:"sad",fr:"triste",ex_en:"She looks sad.",ex_fr:"Elle a l'air triste."},
+{en:"tired",fr:"fatigué",ex_en:"I am tired tonight.",ex_fr:"Je suis fatigué ce soir."},
+{en:"angry",fr:"en colère",ex_en:"He is angry with me.",ex_fr:"Il est en colère contre moi."},
+{en:"scared",fr:"avoir peur",ex_en:"I am scared of dogs.",ex_fr:"J'ai peur des chiens."},
+{en:"excited",fr:"impatient",ex_en:"I am excited to see you.",ex_fr:"Je suis impatient de te voir."},
+{en:"bored",fr:"s'ennuyer",ex_en:"The children are bored.",ex_fr:"Les enfants s'ennuient."},
+{en:"worried",fr:"inquiet",ex_en:"My mother is worried.",ex_fr:"Ma mère est inquiète."},
+{en:"surprised",fr:"surpris",ex_en:"I am surprised by the news.",ex_fr:"Je suis surpris par la nouvelle."},
+{en:"calm",fr:"calme",ex_en:"Please stay calm.",ex_fr:"Reste calme, s'il te plaît."},
+{en:"proud",fr:"fier",ex_en:"I am proud of you.",ex_fr:"Je suis fier de toi."},
+{en:"love",fr:"aimer",ex_en:"I love my family.",ex_fr:"J'aime ma famille."}
+]},
+{name:"La Maison",icon:"🏠",words:[
+{en:"house",fr:"une maison",ex_en:"Their house is big.",ex_fr:"Leur maison est grande."},
+{en:"flat",fr:"un appartement",ex_en:"I live in a small flat.",ex_fr:"J'habite dans un petit appartement."},
+{en:"room",fr:"une pièce",ex_en:"This room is bright.",ex_fr:"Cette pièce est lumineuse."},
+{en:"kitchen",fr:"la cuisine",ex_en:"I cook in the kitchen.",ex_fr:"Je cuisine dans la cuisine."},
+{en:"bedroom",fr:"la chambre",ex_en:"My bedroom is upstairs.",ex_fr:"Ma chambre est à l'étage."},
+{en:"bathroom",fr:"la salle de bain",ex_en:"The bathroom is clean.",ex_fr:"La salle de bain est propre."},
+{en:"door",fr:"la porte",ex_en:"Please close the door.",ex_fr:"Ferme la porte, s'il te plaît."},
+{en:"window",fr:"la fenêtre",ex_en:"Open the window, please.",ex_fr:"Ouvre la fenêtre, s'il te plaît."},
+{en:"table",fr:"la table",ex_en:"The keys are on the table.",ex_fr:"Les clés sont sur la table."},
+{en:"bed",fr:"le lit",ex_en:"My bed is comfortable.",ex_fr:"Mon lit est confortable."},
+{en:"garden",fr:"le jardin",ex_en:"We have a small garden.",ex_fr:"Nous avons un petit jardin."},
+{en:"key",fr:"la clé",ex_en:"I lost my key.",ex_fr:"J'ai perdu ma clé."}
+]},
+{name:"Le Temps & la Météo",icon:"⛅",words:[
+{en:"weather",fr:"le temps",ex_en:"The weather is nice today.",ex_fr:"Le temps est agréable aujourd'hui."},
+{en:"rain",fr:"la pluie",ex_en:"I don't like the rain.",ex_fr:"Je n'aime pas la pluie."},
+{en:"sun",fr:"le soleil",ex_en:"The sun is hot.",ex_fr:"Le soleil est chaud."},
+{en:"snow",fr:"la neige",ex_en:"The snow is white.",ex_fr:"La neige est blanche."},
+{en:"wind",fr:"le vent",ex_en:"The wind is strong.",ex_fr:"Le vent est fort."},
+{en:"cloud",fr:"un nuage",ex_en:"There is a big cloud.",ex_fr:"Il y a un gros nuage."},
+{en:"hot",fr:"chaud",ex_en:"It is hot today.",ex_fr:"Il fait chaud aujourd'hui."},
+{en:"cold",fr:"froid",ex_en:"It is cold outside.",ex_fr:"Il fait froid dehors."},
+{en:"warm",fr:"chaud (agréable)",ex_en:"The water is warm.",ex_fr:"L'eau est chaude."},
+{en:"umbrella",fr:"un parapluie",ex_en:"Take your umbrella.",ex_fr:"Prends ton parapluie."},
+{en:"season",fr:"une saison",ex_en:"Winter is my favourite season.",ex_fr:"L'hiver est ma saison préférée."},
+{en:"temperature",fr:"la température",ex_en:"The temperature is high.",ex_fr:"La température est élevée."}
+]}
+]};
+/* GRAMMAR_DATA_HERE */
+const GRAMMAR_DATA={rules:[
+{title:"Les articles : a, an, the",icon:"📦",explanation:"En anglais, on utilise 'a' devant un mot qui commence par un son de consonne, et 'an' devant un son de voyelle (a, e, i, o, u). Ils veulent dire 'un' ou 'une'. On utilise 'the' quand on parle d'une chose précise, connue : c'est comme 'le', 'la' ou 'les'. Ne t'inquiète pas, c'est plus simple qu'en français car 'the' ne change jamais.",examples:[{en:"I have a cat.",fr:"J'ai un chat."},{en:"She eats an apple.",fr:"Elle mange une pomme."},{en:"The house is big.",fr:"La maison est grande."},{en:"He is an engineer.",fr:"Il est ingénieur."}],quiz:[
+{q:"Complète : I want ___ orange.",choices:["a","an","the","any"],answer:"an",exp:"'Orange' commence par un son de voyelle (o), donc on utilise 'an'."},
+{q:"Complète : She has ___ dog.",choices:["an","the","a","one"],answer:"a",exp:"'Dog' commence par un son de consonne (d), donc on utilise 'a'."},
+{q:"Quel article utilise-t-on pour une chose précise et connue ?",choices:["a","an","the","aucun"],answer:"the",exp:"'The' sert à parler d'une chose précise, comme 'le', 'la' ou 'les'."},
+{q:"Complète : He is ___ teacher.",choices:["an","a","the","some"],answer:"a",exp:"'Teacher' commence par un son de consonne (t), donc on utilise 'a'."}
+]},
+{title:"Les pronoms personnels",icon:"👥",explanation:"Les pronoms personnels remplacent une personne ou une chose : I (je), you (tu/vous), he (il), she (elle), it (il/elle pour une chose ou un animal), we (nous), they (ils/elles). Attention : en anglais, 'I' (je) s'écrit toujours avec une grande lettre, même au milieu d'une phrase. C'est une règle facile à retenir !",examples:[{en:"I am happy.",fr:"Je suis heureuse."},{en:"You are my friend.",fr:"Tu es mon ami."},{en:"She works here.",fr:"Elle travaille ici."},{en:"They live in Paris.",fr:"Ils habitent à Paris."}],quiz:[
+{q:"Quel pronom veut dire 'nous' ?",choices:["they","we","you","he"],answer:"we",exp:"'We' veut dire 'nous'."},
+{q:"Complète : ___ is my sister. (elle)",choices:["He","It","She","They"],answer:"She",exp:"'She' veut dire 'elle' pour une femme ou une fille."},
+{q:"Comment écrit-on 'je' en anglais ?",choices:["i","I","ie","je"],answer:"I",exp:"'I' (je) s'écrit toujours avec une majuscule en anglais."},
+{q:"Quel pronom utilise-t-on pour un objet ou un animal ?",choices:["it","he","she","they"],answer:"it",exp:"'It' sert pour une chose ou un animal (il/elle)."}
+]},
+{title:"L'auxiliaire to be (être)",icon:"🧩",explanation:"Le verbe 'to be' veut dire 'être'. Il change selon la personne : I am (je suis), you are (tu es), he/she/it is (il/elle est), we are (nous sommes), they are (ils sont). C'est un verbe très important qu'on utilise tout le temps. On le raccourcit souvent : I am devient I'm, you are devient you're.",examples:[{en:"I am tired.",fr:"Je suis fatiguée."},{en:"You are kind.",fr:"Tu es gentil."},{en:"He is at home.",fr:"Il est à la maison."},{en:"We are ready.",fr:"Nous sommes prêts."}],quiz:[
+{q:"Complète : She ___ a doctor.",choices:["am","are","is","be"],answer:"is",exp:"Avec 'she' (elle), on utilise 'is'."},
+{q:"Complète : I ___ happy.",choices:["is","are","am","be"],answer:"am",exp:"Avec 'I' (je), on utilise toujours 'am'."},
+{q:"Complète : They ___ friends.",choices:["is","are","am","be"],answer:"are",exp:"Avec 'they' (ils/elles), on utilise 'are'."},
+{q:"Quelle est la forme courte de 'you are' ?",choices:["you're","your","youre","you's"],answer:"you're",exp:"'You are' se raccourcit en 'you're'."}
+]},
+{title:"L'auxiliaire to have (avoir)",icon:"🎒",explanation:"Le verbe 'to have' veut dire 'avoir'. On dit 'have' pour presque toutes les personnes : I have, you have, we have, they have. Mais attention, avec he, she et it, on dit 'has' (avec un s). C'est le seul changement à retenir. En anglais on dit souvent 'have got' pour dire 'avoir' aussi.",examples:[{en:"I have a car.",fr:"J'ai une voiture."},{en:"She has two children.",fr:"Elle a deux enfants."},{en:"We have time.",fr:"Nous avons le temps."},{en:"He has a good idea.",fr:"Il a une bonne idée."}],quiz:[
+{q:"Complète : He ___ a new phone.",choices:["have","has","haves","having"],answer:"has",exp:"Avec 'he' (il), on utilise 'has'."},
+{q:"Complète : I ___ a question.",choices:["has","haves","have","am"],answer:"have",exp:"Avec 'I' (je), on utilise 'have'."},
+{q:"Avec quels pronoms utilise-t-on 'has' ?",choices:["I, you, we","he, she, it","they, we","you, they"],answer:"he, she, it",exp:"'Has' s'utilise seulement avec he, she et it."},
+{q:"Complète : They ___ a big house.",choices:["has","have","haves","is"],answer:"have",exp:"Avec 'they' (ils/elles), on utilise 'have'."}
+]},
+{title:"La négation (ne... pas)",icon:"🚫",explanation:"Pour dire 'non' ou 'ne... pas', on ajoute 'not'. Avec le verbe 'to be', on met 'not' juste après : I am not, she is not. Avec les autres verbes, on utilise 'do not' (don't) ou 'does not' (doesn't) avec he/she/it. Par exemple : I don't like coffee. C'est différent du français mais tu vas vite t'habituer.",examples:[{en:"I am not hungry.",fr:"Je n'ai pas faim."},{en:"She does not work today.",fr:"Elle ne travaille pas aujourd'hui."},{en:"We do not understand.",fr:"Nous ne comprenons pas."},{en:"He is not here.",fr:"Il n'est pas ici."}],quiz:[
+{q:"Complète : I ___ like tea.",choices:["don't","doesn't","not","am not"],answer:"don't",exp:"Avec 'I', on utilise 'don't' pour dire 'ne... pas'."},
+{q:"Complète : She ___ speak Spanish.",choices:["don't","doesn't","not","isn't"],answer:"doesn't",exp:"Avec 'she' (elle), on utilise 'doesn't'."},
+{q:"Complète : They ___ ready. (verbe être)",choices:["don't","doesn't","are not","not are"],answer:"are not",exp:"Avec le verbe 'to be', on met 'not' après : are not."},
+{q:"Quelle est la forme courte de 'is not' ?",choices:["isn't","don't","aren't","not's"],answer:"isn't",exp:"'Is not' se raccourcit en 'isn't'."}
+]},
+{title:"Les questions",icon:"❓",explanation:"Pour poser une question avec 'to be', on inverse : You are happy devient Are you happy ? Avec les autres verbes, on commence par 'Do' ou 'Does' (pour he/she/it) : Do you like music ? Les mots de question utiles sont : what (quoi), where (où), when (quand), who (qui), why (pourquoi), how (comment).",examples:[{en:"Are you tired?",fr:"Es-tu fatigué ?"},{en:"Do you like coffee?",fr:"Aimes-tu le café ?"},{en:"Where do you live?",fr:"Où habites-tu ?"},{en:"What is your name?",fr:"Comment t'appelles-tu ?"}],quiz:[
+{q:"Complète : ___ you speak English?",choices:["Do","Does","Are","Is"],answer:"Do",exp:"Avec 'you', on commence la question par 'Do'."},
+{q:"Complète : ___ she like music?",choices:["Do","Does","Is","Are"],answer:"Does",exp:"Avec 'she' (elle), on utilise 'Does' pour poser une question."},
+{q:"Quel mot de question veut dire 'où' ?",choices:["what","when","where","who"],answer:"where",exp:"'Where' veut dire 'où'."},
+{q:"Complète : ___ you happy? (verbe être)",choices:["Do","Does","Are","Have"],answer:"Are",exp:"Avec le verbe 'to be' et 'you', on commence par 'Are'."}
+]},
+{title:"Le pluriel des noms",icon:"🔢",explanation:"Pour mettre un nom au pluriel, on ajoute souvent un 's' à la fin : cat devient cats. Si le mot finit par -s, -sh, -ch, -x, on ajoute 'es' : box devient boxes. Certains mots sont irréguliers et changent complètement : man devient men, child devient children. Ceux-là, il faut les apprendre par cœur, mais il n'y en a pas beaucoup.",examples:[{en:"One dog, two dogs.",fr:"Un chien, deux chiens."},{en:"I have three boxes.",fr:"J'ai trois boîtes."},{en:"The children are playing.",fr:"Les enfants jouent."},{en:"There are many cars.",fr:"Il y a beaucoup de voitures."}],quiz:[
+{q:"Quel est le pluriel de 'book' ?",choices:["book","books","bookes","bookies"],answer:"books",exp:"On ajoute simplement un 's' : books."},
+{q:"Quel est le pluriel de 'box' ?",choices:["boxs","boxies","boxes","box"],answer:"boxes",exp:"Les mots qui finissent par -x prennent 'es' : boxes."},
+{q:"Quel est le pluriel de 'child' ?",choices:["childs","childes","children","childrens"],answer:"children",exp:"'Child' est irrégulier : le pluriel est 'children'."},
+{q:"Quel est le pluriel de 'man' ?",choices:["mans","men","manes","mens"],answer:"men",exp:"'Man' est irrégulier : le pluriel est 'men'."}
+]},
+{title:"Les comparatifs (plus... que)",icon:"⚖️",explanation:"Pour comparer deux choses, avec un mot court on ajoute '-er' et on utilise 'than' (que) : tall devient taller (plus grand). Avec un mot long, on met 'more' devant : more beautiful (plus beau). Pour dire 'le plus', on ajoute '-est' ou on met 'the most'. Attention : 'good' devient 'better' (meilleur), c'est irrégulier.",examples:[{en:"I am taller than my sister.",fr:"Je suis plus grande que ma sœur."},{en:"This car is faster.",fr:"Cette voiture est plus rapide."},{en:"English is more useful.",fr:"L'anglais est plus utile."},{en:"She is a better cook than me.",fr:"Elle est une meilleure cuisinière que moi."}],quiz:[
+{q:"Complète : My house is ___ than yours. (grand)",choices:["big","bigger","biggest","more big"],answer:"bigger",exp:"'Big' est un mot court, donc on ajoute '-er' : bigger."},
+{q:"Quel mot veut dire 'que' dans une comparaison ?",choices:["that","than","then","as"],answer:"than",exp:"'Than' veut dire 'que' quand on compare (ex : taller than)."},
+{q:"Complète : This film is ___ interesting than the book.",choices:["more","much","most","many"],answer:"more",exp:"'Interesting' est un mot long, donc on met 'more' devant."},
+{q:"Quel est le comparatif de 'good' ?",choices:["gooder","more good","better","best"],answer:"better",exp:"'Good' est irrégulier : le comparatif est 'better' (meilleur)."}
+]}
+]};
 
 const LETTERS=['A','B','C','D'];
 function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
@@ -724,6 +1234,355 @@ function showMatchResults(){
   document.getElementById('mr-correct').textContent=matchCorrect;
   document.getElementById('mr-total').textContent=matchTotal;
   document.getElementById('mr-msg').textContent=pct>=90?'🌟 Parfait ! Aucune hésitation !':pct>=70?'💪 Très bien ! Quelques doublons mais ça vient.':pct>=50?'📖 Continue à t\'entraîner, ça progresse !':'🎯 Révise d\'abord les flashcards puis reessaie !';
+}
+
+/* ─── GAP FILL (Texte à trou) ─── */
+let gapQ=[],gapIdx=0,gapScore=0;
+const GAP_N=12;
+const GAP_LABELS={base:'Forme de base',past:'Prétérit',pp:'Participe passé',fr:'Traduction'};
+function startGap(){
+  gapQ=generateGap(GAP_N);gapIdx=0;gapScore=0;
+  show('gap-screen');renderGap();
+}
+function generateGap(n){
+  const pool=shuffle(VERBS).slice(0,n);
+  const fields=['base','past','pp','fr'];
+  return pool.map(v=>{
+    const blank=fields[Math.floor(Math.random()*fields.length)];
+    const correct=v[blank];
+    const seen=new Set([correct]);
+    const distract=[];
+    for(const x of shuffle(VERBS.filter(x=>x!==v))){
+      const val=x[blank];
+      if(!seen.has(val)){seen.add(val);distract.push(val);}
+      if(distract.length>=8)break;
+    }
+    return{v,blank,label:GAP_LABELS[blank],correct,choices:shuffle([correct,...distract])};
+  });
+}
+function renderGap(){
+  const q=gapQ[gapIdx],n=gapQ.length;
+  document.getElementById('g-prog').style.width=`${(gapIdx/n)*100}%`;
+  document.getElementById('g-counter').textContent=`${gapIdx+1} / ${n}`;
+  document.getElementById('g-tag').textContent=q.label;
+  document.getElementById('g-score').textContent=`Score : ${gapScore}`;
+  document.getElementById('g-hint').textContent=`Trouve : ${q.label.toLowerCase()}`;
+  const fb=document.getElementById('g-feedback');fb.className='feedback';fb.textContent='';
+  const nx=document.getElementById('g-next');nx.classList.add('hidden');
+  nx.textContent=gapIdx===n-1?'Voir mes résultats →':'Suivant →';
+  const line=document.getElementById('g-line');line.innerHTML='';
+  const cells=['base','past','pp','fr'];
+  cells.forEach((type,i)=>{
+    if(i>0){const sep=document.createElement('span');sep.className='gap-arrow';sep.textContent=type==='fr'?'·':'→';line.appendChild(sep);}
+    const s=document.createElement('span');
+    const isFr=type==='fr';
+    s.className='gap-slot'+(isFr?' fr':'');
+    if(type===q.blank){s.classList.add('blank');s.id='g-blank';s.textContent='?';}
+    else{s.textContent=isFr?`(${q.v[type]})`:q.v[type];}
+    line.appendChild(s);
+  });
+  const bank=document.getElementById('g-bank');bank.innerHTML='';
+  q.choices.forEach(ch=>{
+    const btn=document.createElement('button');
+    btn.className='gap-chip';btn.textContent=q.blank==='fr'?ch:ch;btn.dataset.choice=ch;
+    btn.onclick=()=>selectGap(ch);
+    bank.appendChild(btn);
+  });
+}
+function selectGap(chosen){
+  const q=gapQ[gapIdx];
+  const ok=chosen===q.correct;
+  document.querySelectorAll('#g-bank .gap-chip').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.choice===q.correct)b.classList.add('correct');
+    else if(b.dataset.choice===chosen)b.classList.add('wrong');
+  });
+  const blank=document.getElementById('g-blank');
+  blank.textContent=q.blank==='fr'?`(${q.correct})`:q.correct;
+  blank.classList.add(ok?'filled-ok':'filled-ko');
+  const full=`${q.v.base} → ${q.v.past} → ${q.v.pp} · (${q.v.fr})`;
+  const fb=document.getElementById('g-feedback');
+  if(ok){gapScore++;fb.className='feedback ok show';fb.textContent='✓ Correct ! '+full;}
+  else{fb.className='feedback ko show';fb.textContent='✗ La bonne réponse : '+q.correct+'  ·  '+full;}
+  document.getElementById('g-score').textContent=`Score : ${gapScore}`;
+  document.getElementById('g-next').classList.remove('hidden');
+}
+function nextGap(){
+  gapIdx++;
+  if(gapIdx>=gapQ.length)showGapResults();else renderGap();
+}
+function showGapResults(){
+  show('gap-results');
+  const n=gapQ.length,pct=Math.round(gapScore/n*100);
+  document.getElementById('gr-num').textContent=gapScore;
+  document.getElementById('gr-tot').textContent=`/ ${n}`;
+  document.getElementById('gr-title').textContent=pct>=80?'Excellent !':pct>=60?'Bien joué !':pct>=40?'Pas mal !':'Continue !';
+  document.getElementById('gr-sub').textContent=`${gapScore} bonne${gapScore>1?'s':''} réponse${gapScore>1?'s':''} sur ${n} (${pct}%)`;
+  document.getElementById('gr-msg').textContent=pct>=90?'🌟 Tu maîtrises les 4 formes !':pct>=70?'💪 Presque parfait !':pct>=50?'📖 Continue à réviser la table !':'🎯 Revois la théorie puis reessaie !';
+}
+
+/* ═══════════ QCM GÉNÉRIQUE (Blocs 2, 3, 4) ═══════════ */
+/* question format : {tag, q, fr(optionnel), choices[], a, exp} */
+let genQ=[],genIdx=0,genScore=0,genAns=[],genReplayFn=null;
+function startGenQCM(questions,backScreen,replayFn){
+  genQ=questions;genIdx=0;genScore=0;genAns=[];genReplayFn=replayFn;
+  document.getElementById('gq-back').onclick=()=>show(backScreen);
+  document.getElementById('gres-back').onclick=()=>show(backScreen);
+  show('gen-qcm');renderGen();
+}
+function renderGen(){
+  const q=genQ[genIdx],n=genQ.length;
+  document.getElementById('gq-prog').style.width=`${(genIdx/n)*100}%`;
+  document.getElementById('gq-counter').textContent=`${genIdx+1} / ${n}`;
+  document.getElementById('gq-tag').textContent=q.tag;
+  document.getElementById('gq-score').textContent=`Score : ${genScore}`;
+  document.getElementById('gq-text').textContent=q.q;
+  const frEl=document.getElementById('gq-fr');
+  if(q.fr){frEl.textContent='→ '+q.fr;frEl.style.display='block';}else{frEl.style.display='none';}
+  const fb=document.getElementById('gq-feedback');fb.className='feedback';fb.textContent='';
+  const nx=document.getElementById('gq-next');nx.classList.add('hidden');
+  nx.textContent=genIdx===n-1?'Voir mes résultats →':'Question suivante →';
+  const div=document.getElementById('gq-answers');div.innerHTML='';
+  q.choices.forEach((ch,i)=>{
+    const btn=document.createElement('button');
+    btn.className='answer-btn';
+    btn.innerHTML=`<span class="answer-letter">${LETTERS[i]}</span>${ch}`;
+    btn.dataset.choice=ch;
+    btn.onclick=()=>selectGen(ch);
+    div.appendChild(btn);
+  });
+}
+function selectGen(chosen){
+  const q=genQ[genIdx];
+  document.querySelectorAll('#gq-answers .answer-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.choice===q.a)b.classList.add('correct');
+    else if(b.dataset.choice===chosen&&chosen!==q.a)b.classList.add('wrong');
+  });
+  const fb=document.getElementById('gq-feedback');
+  if(chosen===q.a){genScore++;fb.className='feedback ok show';fb.textContent='✓ Bonne réponse ! '+q.exp;genAns.push({ok:true,q:q.q,a:q.a});}
+  else{fb.className='feedback ko show';fb.textContent='✗ '+q.exp;genAns.push({ok:false,q:q.q,a:q.a,chosen});}
+  document.getElementById('gq-score').textContent=`Score : ${genScore}`;
+  document.getElementById('gq-next').classList.remove('hidden');
+}
+function nextGen(){
+  genIdx++;
+  if(genIdx>=genQ.length)showGenResults();else renderGen();
+}
+function showGenResults(){
+  show('gen-results');
+  const n=genQ.length,pct=Math.round(genScore/n*100);
+  document.getElementById('gres-num').textContent=genScore;
+  document.getElementById('gres-tot').textContent=`/ ${n}`;
+  document.getElementById('gres-title').textContent=pct>=80?'Excellent !':pct>=60?'Bien joué !':pct>=40?'Pas mal !':'Continue !';
+  document.getElementById('gres-sub').textContent=`${genScore} bonne${genScore>1?'s':''} réponse${genScore>1?'s':''} sur ${n} (${pct}%)`;
+  document.getElementById('gres-msg').textContent=pct>=90?'🌟 Tu maîtrises le sujet !':pct>=70?'💪 Très bien, encore un peu de pratique.':pct>=50?'📖 Continue à réviser la théorie !':'🎯 Relis la théorie puis reessaie !';
+  document.getElementById('gres-replay').onclick=genReplayFn;
+  document.getElementById('gres-detail').style.display='none';
+  const list=document.getElementById('gres-detail-list');list.innerHTML='';
+  genAns.forEach(ua=>{
+    const el=document.createElement('div');el.className=`ri ${ua.ok?'ok':'ko'}`;
+    el.innerHTML='<span class="ri-icon">'+(ua.ok?'✓':'✗')+'</span><div><div class="ri-q">'+ua.q+'</div><div class="ri-a">'+(ua.ok?('→ '+ua.a):('Bonne réponse : <strong>'+ua.a+'</strong>'+(ua.chosen?' (répondu : '+ua.chosen+')':'')))+'</div></div>';
+    list.appendChild(el);
+  });
+}
+function toggleGenDetail(){const d=document.getElementById('gres-detail');d.style.display=d.style.display==='none'?'block':'none';}
+
+/* ═══════════ BLOC 2 — LES TEMPS VERBAUX ═══════════ */
+function startTenseTheory(){
+  const c=document.getElementById('tense-accordion');c.innerHTML='';
+  TENSE_DATA.tenses.forEach(t=>{
+    const item=document.createElement('div');item.className='acc-item';
+    let ex='';t.examples.forEach(e=>{ex+=`<div class="acc-ex"><span class="ex-en">${e.en}</span><span class="ex-fr">${e.fr}</span></div>`;});
+    item.innerHTML=`<div class="acc-head" onclick="this.closest('.acc-item').classList.toggle('open')">
+      <span class="acc-emoji">🕐</span>
+      <span class="acc-titles"><span class="acc-title">${t.en_name}<small>${t.fr_name}</small></span></span>
+      <span class="acc-chevron">▾</span></div>
+      <div class="acc-body">
+        <div class="acc-use">${t.use}</div>
+        <div class="acc-struct">🔧 ${t.structure}</div>
+        <div class="acc-examples">${ex}</div>
+        <div class="acc-tip">💡 ${t.tip}</div>
+      </div>`;
+    c.appendChild(item);
+  });
+  show('b2-theory');
+}
+function startTenseQCM(){
+  const qs=shuffle(TENSE_DATA.exercises).map(e=>({tag:'Complète la phrase',q:e.sentence,fr:e.fr,choices:shuffle(e.choices),a:e.answer,exp:e.exp}));
+  startGenQCM(qs,'b2-menu',startTenseQCM);
+}
+
+/* ═══════════ BLOC 4 — GRAMMAIRE ═══════════ */
+function startGrammarTheory(){
+  const c=document.getElementById('grammar-accordion');c.innerHTML='';
+  GRAMMAR_DATA.rules.forEach(r=>{
+    const item=document.createElement('div');item.className='acc-item';
+    let ex='';r.examples.forEach(e=>{ex+=`<div class="acc-ex"><span class="ex-en">${e.en}</span><span class="ex-fr">${e.fr}</span></div>`;});
+    item.innerHTML=`<div class="acc-head" onclick="this.closest('.acc-item').classList.toggle('open')">
+      <span class="acc-emoji">${r.icon}</span>
+      <span class="acc-titles"><span class="acc-title">${r.title}</span></span>
+      <span class="acc-chevron">▾</span></div>
+      <div class="acc-body">
+        <div class="acc-use">${r.explanation}</div>
+        <div class="acc-examples">${ex}</div>
+      </div>`;
+    c.appendChild(item);
+  });
+  show('b4-theory');
+}
+function startGrammarQCM(){
+  const all=[];
+  GRAMMAR_DATA.rules.forEach(r=>r.quiz.forEach(qz=>all.push({tag:r.title,q:qz.q,choices:shuffle(qz.choices),a:qz.answer,exp:qz.exp})));
+  const qs=shuffle(all).slice(0,15);
+  startGenQCM(qs,'b4-menu',startGrammarQCM);
+}
+
+/* ═══════════ BLOC 3 — VOCABULAIRE ═══════════ */
+let curTheme=0;
+function startVocab(){renderThemeGrid();show('b3-menu');}
+function renderThemeGrid(){
+  const g=document.getElementById('theme-grid');g.innerHTML='';
+  VOCAB_DATA.themes.forEach((t,i)=>{
+    const c=document.createElement('div');c.className='theme-card';
+    c.innerHTML=`<div class="theme-icon">${t.icon}</div><div class="theme-name">${t.name}</div><div class="theme-count">${t.words.length} mots</div>`;
+    c.onclick=()=>selectTheme(i);
+    g.appendChild(c);
+  });
+}
+function selectTheme(i){
+  curTheme=i;const t=VOCAB_DATA.themes[i];
+  document.getElementById('bt-icon').textContent=t.icon;
+  document.getElementById('bt-title').innerHTML=`<span>${t.name}</span>`;
+  show('b3-theme');
+}
+/* --- Fiches --- */
+function startVocabFiches(){
+  const t=VOCAB_DATA.themes[curTheme];
+  document.getElementById('vf-theme-title').textContent=t.name;
+  const list=document.getElementById('fiche-list');list.innerHTML='';
+  t.words.forEach(w=>{
+    const el=document.createElement('div');el.className='word-fiche';
+    el.innerHTML=`<div class="word-top"><span class="word-en">${w.en}</span><span class="word-fr">${w.fr}</span></div>
+      <div class="word-ex"><span class="we">${w.ex_en}</span> — <span class="wf">${w.ex_fr}</span></div>`;
+    list.appendChild(el);
+  });
+  show('b3-fiches');
+}
+/* --- Flashcards vocab --- */
+let vcWords=[],vcIdx=0,vcFlipped=false;
+function startVocabFlash(){
+  vcWords=shuffle(VOCAB_DATA.themes[curTheme].words);vcIdx=0;
+  show('b3-flash');renderVocabCard();
+}
+function renderVocabCard(){
+  const w=vcWords[vcIdx],n=vcWords.length;
+  document.getElementById('vc-prog').style.width=`${(vcIdx/n)*100}%`;
+  document.getElementById('vc-counter').textContent=`${vcIdx+1} / ${n}`;
+  document.getElementById('vc-en').textContent=w.en;
+  document.getElementById('vc-exen').textContent=w.ex_en;
+  document.getElementById('vc-fr').textContent=w.fr;
+  document.getElementById('vc-exfr').textContent=w.ex_fr;
+  vcFlipped=false;
+  document.getElementById('vc-card').classList.remove('flipped');
+  document.getElementById('vc-buttons').style.display='none';
+  document.getElementById('vc-instr').textContent='Appuie sur la carte pour la retourner';
+}
+function flipVocab(){
+  if(vcFlipped)return;vcFlipped=true;
+  document.getElementById('vc-card').classList.add('flipped');
+  document.getElementById('vc-buttons').style.display='flex';
+  document.getElementById('vc-instr').textContent='';
+}
+function nextVocabCard(){
+  vcIdx++;
+  if(vcIdx>=vcWords.length)show('b3-theme');else renderVocabCard();
+}
+/* --- QCM vocab (les 2 sens) --- */
+function startVocabQCM(){
+  const words=VOCAB_DATA.themes[curTheme].words;
+  const qs=shuffle(words).map(w=>{
+    const enToFr=Math.random()<0.5;
+    if(enToFr){
+      const wrongs=shuffle(words.filter(x=>x.fr!==w.fr)).slice(0,3).map(x=>x.fr);
+      return{tag:'Anglais → Français',q:`Que veut dire "${w.en}" ?`,choices:shuffle([w.fr,...wrongs]),a:w.fr,exp:`${w.en} = ${w.fr}`};
+    }else{
+      const wrongs=shuffle(words.filter(x=>x.en!==w.en)).slice(0,3).map(x=>x.en);
+      return{tag:'Français → Anglais',q:`Comment dit-on "${w.fr}" en anglais ?`,choices:shuffle([w.en,...wrongs]),a:w.en,exp:`${w.fr} = ${w.en}`};
+    }
+  });
+  startGenQCM(qs,'b3-theme',startVocabQCM);
+}
+/* --- Association vocab --- */
+const VM_PAIR=6;
+let vmWords=[],vmRoundIdx=0,vmRounds=1,vmRound=[],vmRight=[],vmSel=null,vmFound=new Set(),vmCorrect=0,vmTotal=0;
+function startVocabMatch(){
+  vmWords=shuffle(VOCAB_DATA.themes[curTheme].words);
+  vmRounds=Math.ceil(vmWords.length/VM_PAIR);
+  vmRoundIdx=0;vmCorrect=0;vmTotal=0;
+  show('b3-match');renderVocabRound();
+}
+function renderVocabRound(){
+  vmRound=vmWords.slice(vmRoundIdx*VM_PAIR,(vmRoundIdx+1)*VM_PAIR);
+  vmRight=shuffle(vmRound.map(w=>w.fr));
+  vmSel=null;vmFound=new Set();
+  document.getElementById('vm-prog').style.width=`${(vmRoundIdx/vmRounds)*100}%`;
+  document.getElementById('vm-counter').textContent=`Tour ${vmRoundIdx+1} / ${vmRounds}`;
+  document.getElementById('vm-round-badge').textContent=`Tour ${vmRoundIdx+1} · ${vmRound.length} paires`;
+  document.getElementById('vm-correct').textContent=vmCorrect;
+  document.getElementById('vm-total').textContent=vmTotal;
+  document.getElementById('vm-next-row').style.display='none';
+  document.getElementById('vm-quit-btn').style.display='inline-block';
+  const left=document.getElementById('vm-left'),right=document.getElementById('vm-right');
+  left.innerHTML='';right.innerHTML='';
+  vmRound.forEach((w,i)=>{
+    const btn=document.createElement('button');btn.className='match-btn';btn.dataset.idx=i;
+    btn.textContent=w.en;btn.onclick=()=>vmSelectLeft(i);left.appendChild(btn);
+  });
+  vmRight.forEach((fr,j)=>{
+    const btn=document.createElement('button');btn.className='match-btn';btn.dataset.j=j;
+    btn.textContent=fr;btn.onclick=()=>vmSelectRight(j,fr);right.appendChild(btn);
+  });
+}
+function vmLeftBtns(){return document.getElementById('vm-left').querySelectorAll('.match-btn');}
+function vmRightBtns(){return document.getElementById('vm-right').querySelectorAll('.match-btn');}
+function vmSelectLeft(i){
+  if(vmFound.has(i))return;
+  vmSel=i;
+  vmLeftBtns().forEach(b=>b.classList.remove('selected'));
+  vmLeftBtns()[i].classList.add('selected');
+}
+function vmSelectRight(j,fr){
+  if(vmSel===null)return;
+  const L=vmLeftBtns(),R=vmRightBtns();
+  const correctFr=vmRound[vmSel].fr;
+  vmTotal++;document.getElementById('vm-total').textContent=vmTotal;
+  if(fr===correctFr){
+    vmCorrect++;vmFound.add(vmSel);
+    L[vmSel].classList.remove('selected');L[vmSel].classList.add('matched');L[vmSel].disabled=true;
+    R[j].classList.add('matched');R[j].disabled=true;
+    document.getElementById('vm-correct').textContent=vmCorrect;
+    vmSel=null;
+    if(vmFound.size===vmRound.length){
+      setTimeout(()=>{
+        vmRoundIdx++;
+        if(vmRoundIdx>=vmRounds){showVocabMatchResults();}
+        else{document.getElementById('vm-next-row').style.display='flex';document.getElementById('vm-quit-btn').style.display='none';}
+      },400);
+    }
+  }else{
+    const s=vmSel;
+    R[j].classList.add('wrong-flash');L[s].classList.add('wrong-flash');
+    setTimeout(()=>{R[j].classList.remove('wrong-flash');L[s].classList.remove('wrong-flash','selected');vmSel=null;},450);
+  }
+}
+function nextVocabRound(){renderVocabRound();}
+function showVocabMatchResults(){
+  show('b3-match-results');
+  const pct=vmTotal?Math.round(vmCorrect/vmTotal*100):0;
+  document.getElementById('vmr-correct').textContent=vmCorrect;
+  document.getElementById('vmr-total').textContent=vmTotal;
+  document.getElementById('vmr-msg').textContent=pct>=90?'🌟 Parfait ! Aucune hésitation !':pct>=70?'💪 Très bien ! Ça vient.':pct>=50?'📖 Continue, ça progresse !':'🎯 Revois les fiches puis reessaie !';
 }
 </script>
 </body>
