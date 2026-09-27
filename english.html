@@ -215,6 +215,32 @@
     .word-ex{font-size:0.82rem;color:#667;line-height:1.5;}
     .word-ex .we{color:#2c3a50;font-weight:500;}
     .word-ex .wf{color:#99a;font-style:italic;}
+
+    /* DIFF EXPLAINER (prétérit vs PP) */
+    .diff-panel{border-radius:14px;padding:16px 18px;margin-bottom:12px;}
+    .diff-panel.blue{background:#eef5ff;border:1.5px solid #cfe0f8;}
+    .diff-panel.green{background:#eefaf2;border:1.5px solid #c3e8d2;}
+    .diff-head{font-weight:700;font-size:1rem;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+    .diff-panel.blue .diff-head{color:#3a6bbf;}
+    .diff-panel.green .diff-head{color:#2a7a4a;}
+    .diff-lead{font-size:0.86rem;color:#556;line-height:1.6;margin-bottom:10px;}
+    .diff-ex{font-size:0.88rem;color:#1e2a3a;padding:5px 0;border-top:1px solid rgba(0,0,0,.05);}
+    .diff-ex:first-of-type{border-top:none;}
+    .diff-ex b{color:#1e2a3a;}
+    .diff-ex .dfr{color:#889;font-style:italic;font-size:0.8rem;}
+    .diff-rule{background:#fff8ec;border:1px solid #f5e2bf;border-radius:12px;padding:14px 16px;margin-bottom:14px;}
+    .diff-rule-line{display:flex;align-items:center;gap:10px;font-size:0.85rem;color:#6b5a2f;padding:6px 0;}
+    .diff-rule-line:not(:last-child){border-bottom:1px solid #f0e2c5;}
+    .diff-rule-q{flex:1;}
+    .diff-rule-a{font-weight:700;color:#8a6d3b;white-space:nowrap;}
+    .diff-forms{width:100%;border-collapse:collapse;font-size:0.85rem;margin-top:6px;}
+    .diff-forms th{background:#f0f5ff;color:#4a7fd4;font-size:0.68rem;text-transform:uppercase;letter-spacing:.05em;padding:8px 8px;text-align:left;}
+    .diff-forms td{padding:8px;border-bottom:1px solid #f0f4ff;color:#2c3a50;}
+    .diff-forms td.b{font-weight:700;color:#1e2a3a;}
+    .diff-forms td.pret{color:#3a6bbf;font-weight:600;}
+    .diff-forms td.pp{color:#2a7a4a;font-weight:600;}
+    .diff-note{font-size:0.82rem;color:#778;line-height:1.6;background:#f4f7ff;border-radius:12px;padding:13px 15px;margin-top:6px;}
+    .diff-note b{color:#4a7fd4;}
   </style>
 </head>
 <body>
@@ -277,6 +303,11 @@
           <div class="act-title">Théorie</div>
           <div class="act-desc">Table des 66 verbes avec recherche</div>
         </div>
+        <div class="act-card" onclick="show('b1-diff')">
+          <div class="act-icon">🤔</div>
+          <div class="act-title">C'est quoi la différence ?</div>
+          <div class="act-desc">Prétérit ou participe passé — en 1 min</div>
+        </div>
         <div class="act-card" onclick="startFlash()">
           <div class="act-icon">🃏</div>
           <div class="act-title">Flashcards</div>
@@ -297,6 +328,57 @@
           <div class="act-title">Texte à trou</div>
           <div class="act-desc">Complète la case manquante : base, prétérit, PP ou traduction</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOC 1 — DIFFÉRENCE PRÉTÉRIT / PARTICIPE PASSÉ -->
+  <div class="screen" id="b1-diff">
+    <button class="back-link" onclick="show('b1-menu')" style="background:none;border:none;cursor:pointer;">← Bloc 1</button>
+    <div class="card">
+      <div style="font-size:1.8rem;margin-bottom:10px">🤔</div>
+      <h2>Prétérit ou <span>participe passé</span> ?</h2>
+      <p class="sub">La différence en 1 minute</p>
+
+      <div class="diff-panel blue">
+        <div class="diff-head">🕐 Le prétérit <span style="font-weight:400;font-size:0.8rem;color:#889">(past simple)</span></div>
+        <div class="diff-lead">C'est le <b>passé tout seul</b>. Le verbe se suffit à lui-même. On l'utilise pour une action <b>terminée</b>, souvent avec un moment précis (yesterday, last week, in 2020).</div>
+        <div class="diff-ex"><b>I ate</b> a pizza yesterday. <span class="dfr">— J'ai mangé une pizza hier.</span></div>
+        <div class="diff-ex"><b>She went</b> to London. <span class="dfr">— Elle est allée à Londres.</span></div>
+        <div class="diff-ex"><b>We saw</b> the film. <span class="dfr">— Nous avons vu le film.</span></div>
+      </div>
+
+      <div class="diff-panel green">
+        <div class="diff-head">🎒 Le participe passé <span style="font-weight:400;font-size:0.8rem;color:#889">(past participle)</span></div>
+        <div class="diff-lead">Il ne vit <b>jamais seul</b> : il a toujours un petit mot devant lui, un <b>auxiliaire</b> (have, has, had, ou to be). On l'utilise surtout avec <b>have / has</b> pour parler d'une action liée au présent.</div>
+        <div class="diff-ex">I <b>have eaten</b>. <span class="dfr">— J'ai mangé (c'est fait, là).</span></div>
+        <div class="diff-ex">She <b>has gone</b> to London. <span class="dfr">— Elle est partie à Londres.</span></div>
+        <div class="diff-ex">We <b>have seen</b> the film. <span class="dfr">— Nous avons vu le film.</span></div>
+      </div>
+
+      <div style="font-weight:700;font-size:0.8rem;color:#bbc;text-transform:uppercase;letter-spacing:.06em;margin:6px 0 8px">🔑 Le truc pour ne plus se tromper</div>
+      <div class="diff-rule">
+        <div class="diff-rule-line"><span class="diff-rule-q">Le verbe est <b>tout seul</b> ?</span><span class="diff-rule-a">→ prétérit</span></div>
+        <div class="diff-rule-line"><span class="diff-rule-q">Il y a <b>have / has / had / be</b> devant ?</span><span class="diff-rule-a">→ participe passé</span></div>
+      </div>
+
+      <div style="font-weight:700;font-size:0.8rem;color:#bbc;text-transform:uppercase;letter-spacing:.06em;margin:6px 0 8px">Parfois différent, parfois identique</div>
+      <table class="diff-forms">
+        <thead><tr><th>Base</th><th>Prétérit</th><th>Participe passé</th></tr></thead>
+        <tbody>
+          <tr><td class="b">eat</td><td class="pret">ate</td><td class="pp">eaten</td></tr>
+          <tr><td class="b">go</td><td class="pret">went</td><td class="pp">gone</td></tr>
+          <tr><td class="b">see</td><td class="pret">saw</td><td class="pp">seen</td></tr>
+          <tr><td class="b">write</td><td class="pret">wrote</td><td class="pp">written</td></tr>
+          <tr><td class="b">buy</td><td class="pret">bought</td><td class="pp">bought</td></tr>
+          <tr><td class="b">have</td><td class="pret">had</td><td class="pp">had</td></tr>
+        </tbody>
+      </table>
+
+      <div class="diff-note">💡 En français, c'est la même logique : le participe passé, c'est le « mangé » de « j'ai <b>mangé</b> » — le mot qui vient après <b>avoir</b> ou <b>être</b>. <b>have eaten</b> = <b>avoir mangé</b>.</div>
+
+      <div class="btn-row" style="justify-content:center;margin-top:20px">
+        <button class="btn-primary" onclick="startFlash()">Passer aux flashcards →</button>
       </div>
     </div>
   </div>
