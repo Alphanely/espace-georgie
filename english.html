@@ -630,7 +630,7 @@ function showQResults(){
   const list=document.getElementById('q-detail-list');list.innerHTML='';
   qcmAnswers.forEach(ua=>{
     const el=document.createElement('div');el.className=`ri ${ua.ok?'ok':'ko'}`;
-    el.innerHTML=`<span class="ri-icon">${ua.ok?'✓':'✗'}</span><div><div class="ri-q">${ua.q}</div><div class="ri-a">${ua.ok?`→ ${ua.a}`:`Bonne réponse : <strong>${ua.a}</strong>${ua.chosen?` (répondu : ${ua.chosen})`:`}`}</div></div>`;
+    el.innerHTML='<span class="ri-icon">'+(ua.ok?'✓':'✗')+'</span><div><div class="ri-q">'+ua.q+'</div><div class="ri-a">'+(ua.ok?('→ '+ua.a):('Bonne réponse : <strong>'+ua.a+'</strong>'+(ua.chosen?' (répondu : '+ua.chosen+')':'')))+'</div></div>';
     list.appendChild(el);
   });
 }
