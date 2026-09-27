@@ -258,7 +258,7 @@
           <div class="block-icon">📝</div>
           <div>
             <div class="block-title">Bloc 1 — Verbes Irréguliers</div>
-            <div class="block-desc">66 verbes · Théorie, Flashcards, QCM, Association, Texte à trou</div>
+            <div class="block-desc">66 verbes · Traduction, Théorie, Flashcards, QCM, Association, Texte à trou</div>
           </div>
           <span class="block-badge blue">Actif</span>
         </div>
@@ -298,6 +298,11 @@
       <h2>Verbes <span>Irréguliers</span></h2>
       <p class="sub">Choisis ton activité</p>
       <div class="activity-grid">
+        <div class="act-card" onclick="show('b1-trans')">
+          <div class="act-icon">🌱</div>
+          <div class="act-title">Traduire les verbes</div>
+          <div class="act-desc">Le sens d'abord : verbe ↔ traduction (sans prétérit ni PP)</div>
+        </div>
         <div class="act-card" onclick="startTheory()">
           <div class="act-icon">📖</div>
           <div class="act-title">Théorie</div>
@@ -329,6 +334,62 @@
           <div class="act-desc">Complète la case manquante : base, prétérit, PP ou traduction</div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- BLOC 1 — TRADUIRE LES VERBES (sens seul) -->
+  <div class="screen" id="b1-trans">
+    <button class="back-link" onclick="show('b1-menu')" style="background:none;border:none;cursor:pointer;">← Bloc 1</button>
+    <div class="card">
+      <div style="font-size:1.8rem;margin-bottom:10px">🌱</div>
+      <h2>Traduire les <span>verbes</span></h2>
+      <p class="sub">Apprends d'abord le sens de chaque verbe</p>
+      <p style="font-size:0.86rem;color:#889;line-height:1.6;margin-bottom:4px">Ici, pas besoin de retenir le prétérit ni le participe passé. Concentre-toi juste sur ce que veut dire chaque verbe. Le reste viendra après !</p>
+      <div class="activity-grid">
+        <div class="act-card" onclick="startTransFlash()">
+          <div class="act-icon">🃏</div>
+          <div class="act-title">Flashcards</div>
+          <div class="act-desc">Verbe anglais → sa traduction</div>
+        </div>
+        <div class="act-card" onclick="startTransQCM()">
+          <div class="act-icon">🎯</div>
+          <div class="act-title">QCM</div>
+          <div class="act-desc">Verbe ↔ traduction, dans les 2 sens</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOC 1 — TRADUCTION FLASHCARDS -->
+  <div class="screen" id="b1-trans-flash">
+    <div class="card">
+      <div class="top-bar">
+        <button class="back-btn2" onclick="show('b1-trans')">← Retour</button>
+        <div class="prog-wrap"><div class="prog-fill" id="tf-prog"></div></div>
+        <div class="counter" id="tf-counter">1 / 66</div>
+      </div>
+      <div class="flip-area" onclick="flipTrans()">
+        <div class="flip-card" id="tf-card">
+          <div class="flip-face flip-front">
+            <div>
+              <div class="flip-label">🇬🇧 Verbe anglais — Quelle traduction ?</div>
+              <div class="flip-base" id="tf-en"></div>
+            </div>
+            <div class="flip-tap">Appuie pour révéler ↩</div>
+          </div>
+          <div class="flip-face flip-back">
+            <div>
+              <div class="flip-label">🇫🇷 Traduction</div>
+              <div class="flip-base" id="tf-fr"></div>
+            </div>
+            <div class="flip-tap">Suivant ↓</div>
+          </div>
+        </div>
+      </div>
+      <div class="flash-buttons" id="tf-buttons" style="display:none">
+        <button class="btn-knew" onclick="nextTransCard()">Verbe suivant →</button>
+      </div>
+      <div style="text-align:center;font-size:0.78rem;color:#bbc;margin-top:12px" id="tf-instr">Appuie sur la carte pour la retourner</div>
     </div>
   </div>
 
@@ -1665,6 +1726,47 @@ function showVocabMatchResults(){
   document.getElementById('vmr-correct').textContent=vmCorrect;
   document.getElementById('vmr-total').textContent=vmTotal;
   document.getElementById('vmr-msg').textContent=pct>=90?'🌟 Parfait ! Aucune hésitation !':pct>=70?'💪 Très bien ! Ça vient.':pct>=50?'📖 Continue, ça progresse !':'🎯 Revois les fiches puis reessaie !';
+}
+
+/* ═══════════ BLOC 1 — TRADUIRE LES VERBES (sens seul) ═══════════ */
+let tfVerbs=[],tfIdx=0,tfFlipped=false;
+function startTransFlash(){
+  tfVerbs=shuffle(VERBS);tfIdx=0;
+  show('b1-trans-flash');renderTransCard();
+}
+function renderTransCard(){
+  const v=tfVerbs[tfIdx],n=tfVerbs.length;
+  document.getElementById('tf-prog').style.width=`${(tfIdx/n)*100}%`;
+  document.getElementById('tf-counter').textContent=`${tfIdx+1} / ${n}`;
+  document.getElementById('tf-en').textContent=v.base;
+  document.getElementById('tf-fr').textContent=v.fr;
+  tfFlipped=false;
+  document.getElementById('tf-card').classList.remove('flipped');
+  document.getElementById('tf-buttons').style.display='none';
+  document.getElementById('tf-instr').textContent='Appuie sur la carte pour la retourner';
+}
+function flipTrans(){
+  if(tfFlipped)return;tfFlipped=true;
+  document.getElementById('tf-card').classList.add('flipped');
+  document.getElementById('tf-buttons').style.display='flex';
+  document.getElementById('tf-instr').textContent='';
+}
+function nextTransCard(){
+  tfIdx++;
+  if(tfIdx>=tfVerbs.length)show('b1-trans');else renderTransCard();
+}
+function startTransQCM(){
+  const qs=shuffle(VERBS).slice(0,20).map(v=>{
+    const enToFr=Math.random()<0.5;
+    if(enToFr){
+      const wrongs=shuffle(VERBS.filter(x=>x.fr!==v.fr)).slice(0,3).map(x=>x.fr);
+      return{tag:'Anglais → Français',q:`Que veut dire "${v.base}" ?`,choices:shuffle([v.fr,...wrongs]),a:v.fr,exp:`${v.base} = ${v.fr}`};
+    }else{
+      const wrongs=shuffle(VERBS.filter(x=>x.base!==v.base)).slice(0,3).map(x=>x.base);
+      return{tag:'Français → Anglais',q:`Comment dit-on "${v.fr}" en anglais ?`,choices:shuffle([v.base,...wrongs]),a:v.base,exp:`${v.fr} = ${v.base}`};
+    }
+  });
+  startGenQCM(qs,'b1-trans',startTransQCM);
 }
 </script>
 </body>
