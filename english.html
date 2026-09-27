@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anglais — Verbes Irréguliers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:#f4f7ff;color:#1e2a3a;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:20px;}
+    .container{width:100%;max-width:680px;}
+    .screen{display:none;}.screen.active{display:block;}
+
+    /* SHARED */
+    .card{background:white;border-radius:22px;padding:32px 28px;box-shadow:0 4px 28px rgba(30,60,120,0.09);margin-bottom:10px;}
+    h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:#1e2a3a;margin-bottom:4px;}
+    h2 span{color:#4a7fd4;font-style:italic;}
+    .sub{color:#aab;font-size:0.82rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:22px;}
+    .back-link{display:inline-flex;align-items:center;gap:6px;color:#bbc;font-size:0.82rem;text-decoration:none;font-weight:600;margin-bottom:18px;transition:color .18s;}
+    .back-link:hover{color:#4a7fd4;}
+    .back-btn2{background:none;border:1.5px solid #e0e8f8;color:#bbc;padding:7px 14px;border-radius:30px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s;}
+    .back-btn2:hover{border-color:#4a7fd4;color:#4a7fd4;}
+
+    /* PROGRESS */
+    .top-bar{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+    .prog-wrap{flex:1;background:#e8eef8;border-radius:10px;height:7px;overflow:hidden;}
+    .prog-fill{height:100%;background:linear-gradient(to right,#88b4f0,#4a7fd4);border-radius:10px;transition:width .5s ease;}
+    .counter{font-size:0.82rem;color:#bbc;white-space:nowrap;}
+
+    /* HOME */
+    .block-list{display:grid;gap:14px;margin-top:24px;}
+    .block-card{background:#f0f5ff;border:2px solid #d8e4f8;border-radius:18px;padding:18px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .2s;text-decoration:none;}
+    .block-card:hover{border-color:#4a7fd4;background:white;transform:translateY(-2px);}
+    .block-card.locked{opacity:.55;cursor:default;pointer-events:none;}
+    .block-icon{width:46px;height:46px;border-radius:13px;background:#deeeff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;transition:background .2s;}
+    .block-card:hover .block-icon{background:#4a7fd4;color:white;}
+    .block-title{font-weight:700;font-size:0.98rem;color:#1e2a3a;margin-bottom:2px;}
+    .block-desc{font-size:0.82rem;color:#889;}
+    .block-badge{margin-left:auto;flex-shrink:0;font-size:0.68rem;font-weight:700;padding:3px 9px;border-radius:20px;}
+    .block-badge.blue{background:#deeeff;color:#3a7abf;}
+    .block-badge.gray{background:#eee;color:#aaa;}
+
+    /* BLOCK MENU */
+    .activity-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px;}
+    .act-card{background:#f0f5ff;border:2px solid #d8e4f8;border-radius:16px;padding:18px 16px;text-align:center;cursor:pointer;transition:all .2s;}
+    .act-card:hover{border-color:#4a7fd4;background:white;transform:translateY(-2px);}
+    .act-icon{font-size:1.8rem;margin-bottom:8px;}
+    .act-title{font-weight:700;font-size:0.9rem;color:#1e2a3a;margin-bottom:3px;}
+    .act-desc{font-size:0.75rem;color:#889;}
+
+    /* THEORY TABLE */
+    .search-wrap{position:relative;margin-bottom:16px;}
+    .search-wrap input{width:100%;padding:11px 16px 11px 40px;border:2px solid #e0e8f8;border-radius:12px;font-size:0.92rem;font-family:'Inter',sans-serif;color:#1e2a3a;outline:none;transition:border .2s;}
+    .search-wrap input:focus{border-color:#4a7fd4;}
+    .search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#bbc;font-size:1rem;}
+    .verb-table{width:100%;border-collapse:collapse;font-size:0.88rem;}
+    .verb-table th{background:#f0f5ff;color:#4a7fd4;font-size:0.72rem;text-transform:uppercase;letter-spacing:.06em;padding:10px 12px;text-align:left;position:sticky;top:0;}
+    .verb-table td{padding:9px 12px;border-bottom:1px solid #f0f4ff;color:#2c3a50;}
+    .verb-table tr:last-child td{border-bottom:none;}
+    .verb-table tr:hover td{background:#f8faff;}
+    .base-cell{font-weight:700;color:#1e2a3a;}
+    .fr-cell{color:#889;font-style:italic;}
+    .table-wrap{max-height:480px;overflow-y:auto;border:1.5px solid #e0e8f8;border-radius:14px;}
+    .verb-count{font-size:0.8rem;color:#bbc;margin-bottom:10px;text-align:right;}
+
+    /* FLIP CARDS */
+    .flip-area{perspective:1000px;margin-bottom:18px;cursor:pointer;}
+    .flip-card{position:relative;width:100%;min-height:240px;transform-style:preserve-3d;transition:transform .55s ease;}
+    .flip-card.flipped{transform:rotateY(180deg);}
+    .flip-face{position:absolute;width:100%;min-height:240px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;padding:26px 24px;display:flex;flex-direction:column;justify-content:space-between;}
+    .flip-front{background:linear-gradient(135deg,#eef5ff,#deeeff);border:2px solid #c8d8f0;}
+    .flip-back{background:linear-gradient(135deg,#eefaf2,#d8f0e4);border:2px solid #b8dfc8;transform:rotateY(180deg);}
+    .flip-label{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#5b8dd9;margin-bottom:12px;}
+    .flip-back .flip-label{color:#3a9a5a;}
+    .flip-base{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#1e2a3a;margin-bottom:6px;}
+    .flip-fr{font-size:0.88rem;color:#6688aa;font-style:italic;}
+    .flip-tap{font-size:0.75rem;color:#5b8dd9;opacity:.8;text-align:center;margin-top:12px;}
+    .flip-back .flip-tap{color:#3a9a5a;}
+    .flip-past{font-size:1.3rem;font-weight:700;color:#1e2a3a;margin-bottom:4px;}
+    .flip-pp{font-size:1.1rem;color:#3a9a5a;margin-bottom:4px;}
+    .flip-labels-row{display:flex;gap:8px;margin-bottom:10px;}
+    .flip-tag{font-size:0.68rem;font-weight:700;padding:2px 8px;border-radius:10px;}
+    .flip-tag.past{background:#deeeff;color:#3a7abf;}
+    .flip-tag.pp{background:#d8f0e4;color:#2a7a4a;}
+    .flash-buttons{display:flex;gap:10px;margin-top:4px;}
+    .btn-knew{flex:1;background:#d8f0e4;border:2px solid #3a9a5a;color:#1a5a2a;padding:13px;border-radius:13px;font-size:0.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s;}
+    .btn-knew:hover{background:#3a9a5a;color:white;}
+    .btn-review{flex:1;background:#fdeaea;border:2px solid #d95f5f;color:#852020;padding:13px;border-radius:13px;font-size:0.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s;}
+    .btn-review:hover{background:#d95f5f;color:white;}
+
+    /* QCM */
+    .q-tag{background:#eef5ff;border:1.5px solid #d0e4f8;color:#4a7fd4;font-size:0.73rem;font-weight:700;padding:3px 11px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em;}
+    .q-score{font-size:0.82rem;color:#bbc;}
+    .meta-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+    .question{font-size:1.08rem;font-weight:700;line-height:1.65;margin-bottom:22px;color:#1e1e2e;}
+    .answers{display:grid;gap:10px;}
+    .answer-btn{background:#f4f7ff;border:2px solid #e0e8f8;padding:12px 17px;border-radius:13px;text-align:left;cursor:pointer;font-size:0.9rem;transition:all .18s;font-family:'Inter',sans-serif;color:#1e2a3a;display:flex;align-items:center;gap:10px;}
+    .answer-letter{width:24px;height:24px;border-radius:50%;background:#deeeff;color:#4a7fd4;font-size:0.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;}
+    .answer-btn:hover:not(:disabled){border-color:#4a7fd4;background:white;}
+    .answer-btn:hover:not(:disabled) .answer-letter{background:#4a7fd4;color:white;}
+    .answer-btn.correct{background:#d8f0e4;border-color:#3a9a5a;}
+    .answer-btn.correct .answer-letter{background:#3a9a5a;color:white;}
+    .answer-btn.wrong{background:#fdeaea;border-color:#d95f5f;}
+    .answer-btn.wrong .answer-letter{background:#d95f5f;color:white;}
+    .answer-btn:disabled{cursor:default;}
+    .feedback{margin-top:14px;padding:12px 15px;border-radius:12px;font-size:0.85rem;line-height:1.6;display:none;}
+    .feedback.show{display:block;}
+    .feedback.ok{background:#d8f0e4;color:#1a5a2a;}
+    .feedback.ko{background:#fdeaea;color:#852020;}
+    .btn-row{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;}
+    .btn-primary{background:#4a7fd4;color:white;border:none;padding:12px 28px;border-radius:50px;font-size:0.9rem;font-weight:600;cursor:pointer;transition:transform .2s,background .2s;font-family:'Inter',sans-serif;}
+    .btn-primary:hover{background:#3a6bbf;transform:translateY(-2px);}
+    .btn-ghost{background:none;border:2px solid #e0e8f8;color:#aab;padding:12px 20px;border-radius:50px;font-size:0.87rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:'Inter',sans-serif;}
+    .btn-ghost:hover{border-color:#4a7fd4;color:#4a7fd4;}
+    .hidden{display:none!important;}
+
+    /* RESULTS */
+    .results-wrap{text-align:center;}
+    .score-ring{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#88b4f0,#4a7fd4);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:white;flex-direction:column;box-shadow:0 10px 28px rgba(74,127,212,.3);}
+    .score-num{font-family:'Playfair Display',serif;font-size:2.2rem;line-height:1;font-weight:700;}
+    .score-tot{font-size:0.85rem;opacity:.85;}
+    .res-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:6px;}
+    .res-sub{color:#99a;font-size:0.88rem;margin-bottom:8px;}
+    .res-msg{font-family:'Playfair Display',serif;font-style:italic;color:#4a7fd4;font-size:1rem;margin-bottom:24px;}
+    .action-row{display:flex;gap:10px;justify-content:center;margin-bottom:24px;flex-wrap:wrap;}
+    .detail-list{max-height:260px;overflow-y:auto;display:grid;gap:7px;text-align:left;}
+    .ri{padding:10px 13px;border-radius:10px;font-size:0.82rem;display:flex;gap:9px;align-items:flex-start;}
+    .ri.ok{background:#d8f0e4;}.ri.ko{background:#fdeaea;}
+    .ri-icon{flex-shrink:0;font-weight:700;margin-top:1px;}
+    .ri.ok .ri-icon{color:#3a9950;}.ri.ko .ri-icon{color:#c0392b;}
+    .ri-q{font-weight:500;margin-bottom:1px;}.ri-a{color:#667;}
+    .ri-a strong{color:#1e2a3a;}
+
+    /* MATCHING GAME */
+    .match-header{text-align:center;margin-bottom:20px;}
+    .match-title{font-weight:700;font-size:1rem;color:#1e2a3a;margin-bottom:4px;}
+    .match-sub{font-size:0.82rem;color:#889;}
+    .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+    .match-col{display:flex;flex-direction:column;gap:8px;}
+    .match-btn{padding:12px 10px;border-radius:12px;border:2px solid #e0e8f8;background:#f4f7ff;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.88rem;font-weight:600;color:#1e2a3a;transition:all .18s;text-align:center;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
+    .match-btn .match-fr{font-size:0.72rem;color:#889;font-weight:400;font-style:italic;}
+    .match-btn:hover:not(:disabled){border-color:#4a7fd4;background:white;}
+    .match-btn.selected{border-color:#4a7fd4;background:#eef5ff;box-shadow:0 0 0 3px rgba(74,127,212,.2);}
+    .match-btn.matched{border-color:#3a9a5a;background:#d8f0e4;cursor:default;color:#1a5a2a;}
+    .match-btn.wrong-flash{border-color:#d95f5f;background:#fdeaea;animation:flashRed .4s;}
+    .match-btn:disabled{cursor:default;}
+    @keyframes flashRed{0%,100%{background:#fdeaea;}50%{background:#ffbbbb;}}
+    .match-score-row{display:flex;gap:10px;justify-content:center;margin:16px 0;}
+    .mscore{background:#f4f7ff;border-radius:12px;padding:12px 20px;text-align:center;flex:1;}
+    .mscore-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;}
+    .mscore-num.green{color:#3a9950;}.mscore-num.blue{color:#4a7fd4;}
+    .mscore-label{font-size:0.75rem;color:#aab;margin-top:2px;}
+    .round-badge{display:inline-block;background:#eef5ff;color:#4a7fd4;font-size:0.72rem;font-weight:700;padding:3px 12px;border-radius:20px;margin-bottom:12px;}
+
+    /* FLASH RESULT */
+    .flash-result{text-align:center;}
+    .flash-score-row{display:flex;gap:14px;justify-content:center;margin:18px 0;}
+    .fscore-box{background:#f4f7ff;border-radius:14px;padding:16px 20px;text-align:center;flex:1;}
+    .fscore-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;}
+    .fscore-num.green{color:#3a9950;}.fscore-num.orange{color:#e07a40;}
+    .fscore-label{font-size:0.75rem;color:#aab;margin-top:3px;}
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ENGLISH HOME -->
+  <div class="screen active" id="eng-home">
+    <a href="index.html" class="back-link">← Accueil</a>
+    <div class="card">
+      <div style="font-size:2rem;margin-bottom:12px">🇬🇧</div>
+      <h2>Apprendre <span>l'Anglais</span></h2>
+      <p class="sub">Blocs de révision</p>
+      <div class="block-list">
+        <div class="block-card" onclick="show('b1-menu')">
+          <div class="block-icon">📝</div>
+          <div>
+            <div class="block-title">Bloc 1 — Verbes Irréguliers</div>
+            <div class="block-desc">66 verbes · Théorie, Flashcards, QCM, Association</div>
+          </div>
+          <span class="block-badge blue">Actif</span>
+        </div>
+        <div class="block-card locked">
+          <div class="block-icon">🕐</div>
+          <div>
+            <div class="block-title">Bloc 2 — Les Temps Verbaux</div>
+            <div class="block-desc">Present, Past, Future, Conditional...</div>
+          </div>
+          <span class="block-badge gray">Bientôt</span>
+        </div>
+        <div class="block-card locked">
+          <div class="block-icon">💬</div>
+          <div>
+            <div class="block-title">Bloc 3 — Vocabulaire Thématique</div>
+            <div class="block-desc">Travail, voyages, shopping, émotions...</div>
+          </div>
+          <span class="block-badge gray">Bientôt</span>
+        </div>
+        <div class="block-card locked">
+          <div class="block-icon">🏗️</div>
+          <div>
+            <div class="block-title">Bloc 4 — Grammaire</div>
+            <div class="block-desc">Articles, pronoms, auxiliaires...</div>
+          </div>
+          <span class="block-badge gray">Bientôt</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOCK 1 MENU -->
+  <div class="screen" id="b1-menu">
+    <button class="back-link" onclick="show('eng-home')" style="background:none;border:none;cursor:pointer;">← Blocs</button>
+    <div class="card">
+      <div style="font-size:1.8rem;margin-bottom:10px">📝</div>
+      <h2>Verbes <span>Irréguliers</span></h2>
+      <p class="sub">Choisis ton activité</p>
+      <div class="activity-grid">
+        <div class="act-card" onclick="startTheory()">
+          <div class="act-icon">📖</div>
+          <div class="act-title">Théorie</div>
+          <div class="act-desc">Table des 66 verbes avec recherche</div>
+        </div>
+        <div class="act-card" onclick="startFlash()">
+          <div class="act-icon">🃏</div>
+          <div class="act-title">Flashcards</div>
+          <div class="act-desc">Base → Prétérit + Participe passé</div>
+        </div>
+        <div class="act-card" onclick="startQCM()">
+          <div class="act-icon">🎯</div>
+          <div class="act-title">QCM</div>
+          <div class="act-desc">20 questions générées aléatoirement</div>
+        </div>
+        <div class="act-card" onclick="startMatch()">
+          <div class="act-icon">🔗</div>
+          <div class="act-title">Association</div>
+          <div class="act-desc">Relie chaque verbe à son prétérit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEORY -->
+  <div class="screen" id="theory-screen">
+    <button class="back-link" onclick="show('b1-menu')" style="background:none;border:none;cursor:pointer;">← Bloc 1</button>
+    <div class="card">
+      <h2>📖 <span>Théorie</span></h2>
+      <p class="sub">66 verbes irréguliers essentiels</p>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="verb-search" placeholder="Recherche : go, aller, went..." oninput="filterTable()" />
+      </div>
+      <div class="verb-count" id="verb-count">66 verbes</div>
+      <div class="table-wrap">
+        <table class="verb-table">
+          <thead><tr><th>Base</th><th>Prétérit</th><th>Participe passé</th><th>Français</th></tr></thead>
+          <tbody id="verb-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLASHCARDS -->
+  <div class="screen" id="flash-screen">
+    <div class="card">
+      <div class="top-bar">
+        <button class="back-btn2" onclick="show('b1-menu')">← Bloc 1</button>
+        <div class="prog-wrap"><div class="prog-fill" id="f-prog"></div></div>
+        <div class="counter" id="f-counter">1 / 66</div>
+      </div>
+      <div class="flip-area" onclick="flipCard()">
+        <div class="flip-card" id="flip-card">
+          <div class="flip-face flip-front">
+            <div>
+              <div class="flip-label">📖 Forme de base — Quel est le prétérit et le PP ?</div>
+              <div class="flip-base" id="f-base"></div>
+              <div class="flip-fr" id="f-fr"></div>
+            </div>
+            <div class="flip-tap">Appuie pour révéler ↩</div>
+          </div>
+          <div class="flip-face flip-back">
+            <div>
+              <div class="flip-label">✅ Réponse</div>
+              <div class="flip-labels-row">
+                <span class="flip-tag past">Prétérit</span>
+                <span class="flip-tag pp">Participe passé</span>
+              </div>
+              <div class="flip-past" id="f-past"></div>
+              <div class="flip-pp" id="f-pp"></div>
+              <div style="font-size:0.82rem;color:#889;margin-top:8px;font-style:italic" id="f-fr2"></div>
+            </div>
+            <div class="flip-tap">Je savais ? ↓</div>
+          </div>
+        </div>
+      </div>
+      <div class="flash-buttons" id="f-buttons" style="display:none">
+        <button class="btn-review" onclick="flashAnswer(false)">✗ À revoir</button>
+        <button class="btn-knew" onclick="flashAnswer(true)">✓ Je savais !</button>
+      </div>
+      <div style="text-align:center;font-size:0.78rem;color:#bbc;margin-top:12px" id="f-instr">Appuie sur la carte pour la retourner</div>
+    </div>
+  </div>
+
+  <!-- FLASH RESULTS -->
+  <div class="screen" id="flash-results">
+    <div class="card flash-result">
+      <div style="font-size:2.2rem;margin-bottom:12px">🃏</div>
+      <h2 style="font-size:1.5rem;margin-bottom:6px">Session terminée !</h2>
+      <div class="flash-score-row">
+        <div class="fscore-box"><div class="fscore-num green" id="fr-knew">0</div><div class="fscore-label">Je savais ✓</div></div>
+        <div class="fscore-box"><div class="fscore-num orange" id="fr-todo">0</div><div class="fscore-label">À revoir ✗</div></div>
+      </div>
+      <div class="res-msg" id="fr-msg"></div>
+      <div class="action-row">
+        <button class="btn-primary" onclick="startFlash()">Recommencer →</button>
+        <button class="btn-ghost" onclick="show('b1-menu')">← Bloc 1</button>
+      </div>
+      <div id="fr-list" style="text-align:left"></div>
+    </div>
+  </div>
+
+  <!-- QCM -->
+  <div class="screen" id="qcm-screen">
+    <div class="card">
+      <div class="top-bar">
+        <div class="prog-wrap"><div class="prog-fill" id="q-prog"></div></div>
+        <div class="counter" id="q-counter">1 / 20</div>
+      </div>
+      <div class="meta-row">
+        <span class="q-tag" id="q-tag">Prétérit</span>
+        <span class="q-score" id="q-score">Score : 0</span>
+      </div>
+      <div class="question" id="q-text"></div>
+      <div class="answers" id="q-answers"></div>
+      <div class="feedback" id="q-feedback"></div>
+      <div class="btn-row">
+        <button class="btn-primary hidden" id="q-next" onclick="nextQ()">Question suivante →</button>
+        <button class="btn-ghost" onclick="show('b1-menu')">← Bloc 1</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QCM RESULTS -->
+  <div class="screen" id="qcm-results">
+    <div class="card results-wrap">
+      <div class="score-ring"><div class="score-num" id="r-num">0</div><div class="score-tot" id="r-tot">/ 20</div></div>
+      <div class="res-title" id="r-title">Résultat</div>
+      <div class="res-sub" id="r-sub"></div>
+      <div class="res-msg" id="r-msg"></div>
+      <div class="action-row">
+        <button class="btn-primary" onclick="startQCM()">Rejouer →</button>
+        <button class="btn-ghost" onclick="show('b1-menu')">← Bloc 1</button>
+        <button class="btn-ghost" onclick="toggleQDetail()">Voir le détail</button>
+      </div>
+      <div id="q-detail" style="display:none">
+        <div style="font-size:0.75rem;font-weight:700;color:#bbc;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Détail des réponses</div>
+        <div class="detail-list" id="q-detail-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATCHING GAME -->
+  <div class="screen" id="match-screen">
+    <div class="card">
+      <div class="top-bar">
+        <div class="prog-wrap"><div class="prog-fill" id="m-prog"></div></div>
+        <div class="counter" id="m-counter">Tour 1 / 5</div>
+      </div>
+      <div class="match-header">
+        <div class="round-badge" id="m-round-badge">Tour 1 · 6 paires</div>
+        <div class="match-title">Relie chaque verbe à son prétérit</div>
+        <div class="match-sub">Tape un verbe à gauche, puis son prétérit à droite</div>
+      </div>
+      <div class="match-score-row">
+        <div class="mscore"><div class="mscore-num green" id="m-correct">0</div><div class="mscore-label">Correct ✓</div></div>
+        <div class="mscore"><div class="mscore-num blue" id="m-total">0</div><div class="mscore-label">Tentatives</div></div>
+      </div>
+      <div class="match-grid">
+        <div class="match-col" id="m-left"></div>
+        <div class="match-col" id="m-right"></div>
+      </div>
+      <div class="btn-row" id="m-next-row" style="display:none">
+        <button class="btn-primary" onclick="nextRound()">Tour suivant →</button>
+        <button class="btn-ghost" onclick="show('b1-menu')">← Bloc 1</button>
+      </div>
+      <button class="btn-ghost" id="m-quit-btn" onclick="show('b1-menu')" style="margin-top:12px">← Quitter</button>
+    </div>
+  </div>
+
+  <!-- MATCH RESULTS -->
+  <div class="screen" id="match-results">
+    <div class="card results-wrap">
+      <div style="font-size:2.2rem;margin-bottom:12px">🔗</div>
+      <h2 style="font-size:1.5rem;margin-bottom:6px">Jeu terminé !</h2>
+      <div class="match-score-row">
+        <div class="mscore"><div class="mscore-num green" id="mr-correct">0</div><div class="mscore-label">Corrects 1er essai</div></div>
+        <div class="mscore"><div class="mscore-num blue" id="mr-total">0</div><div class="mscore-label">Tentatives totales</div></div>
+      </div>
+      <div class="res-msg" id="mr-msg"></div>
+      <div class="action-row">
+        <button class="btn-primary" onclick="startMatch()">Rejouer →</button>
+        <button class="btn-ghost" onclick="show('b1-menu')">← Bloc 1</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+/* ─── DATA ─── */
+const VERBS=[
+  {base:"be",past:"was / were",pp:"been",fr:"être"},
+  {base:"beat",past:"beat",pp:"beaten",fr:"battre"},
+  {base:"become",past:"became",pp:"become",fr:"devenir"},
+  {base:"begin",past:"began",pp:"begun",fr:"commencer"},
+  {base:"bite",past:"bit",pp:"bitten",fr:"mordre"},
+  {base:"blow",past:"blew",pp:"blown",fr:"souffler"},
+  {base:"break",past:"broke",pp:"broken",fr:"casser"},
+  {base:"bring",past:"brought",pp:"brought",fr:"apporter"},
+  {base:"build",past:"built",pp:"built",fr:"construire"},
+  {base:"buy",past:"bought",pp:"bought",fr:"acheter"},
+  {base:"catch",past:"caught",pp:"caught",fr:"attraper"},
+  {base:"choose",past:"chose",pp:"chosen",fr:"choisir"},
+  {base:"come",past:"came",pp:"come",fr:"venir"},
+  {base:"cost",past:"cost",pp:"cost",fr:"coûter"},
+  {base:"cut",past:"cut",pp:"cut",fr:"couper"},
+  {base:"do",past:"did",pp:"done",fr:"faire"},
+  {base:"draw",past:"drew",pp:"drawn",fr:"dessiner"},
+  {base:"drink",past:"drank",pp:"drunk",fr:"boire"},
+  {base:"drive",past:"drove",pp:"driven",fr:"conduire"},
+  {base:"eat",past:"ate",pp:"eaten",fr:"manger"},
+  {base:"fall",past:"fell",pp:"fallen",fr:"tomber"},
+  {base:"feel",past:"felt",pp:"felt",fr:"ressentir"},
+  {base:"find",past:"found",pp:"found",fr:"trouver"},
+  {base:"fly",past:"flew",pp:"flown",fr:"voler"},
+  {base:"forget",past:"forgot",pp:"forgotten",fr:"oublier"},
+  {base:"get",past:"got",pp:"got",fr:"obtenir / avoir"},
+  {base:"give",past:"gave",pp:"given",fr:"donner"},
+  {base:"go",past:"went",pp:"gone",fr:"aller"},
+  {base:"grow",past:"grew",pp:"grown",fr:"grandir"},
+  {base:"have",past:"had",pp:"had",fr:"avoir"},
+  {base:"hear",past:"heard",pp:"heard",fr:"entendre"},
+  {base:"hide",past:"hid",pp:"hidden",fr:"cacher"},
+  {base:"hit",past:"hit",pp:"hit",fr:"frapper"},
+  {base:"hold",past:"held",pp:"held",fr:"tenir"},
+  {base:"keep",past:"kept",pp:"kept",fr:"garder"},
+  {base:"know",past:"knew",pp:"known",fr:"savoir"},
+  {base:"leave",past:"left",pp:"left",fr:"partir / laisser"},
+  {base:"lose",past:"lost",pp:"lost",fr:"perdre"},
+  {base:"make",past:"made",pp:"made",fr:"faire / fabriquer"},
+  {base:"meet",past:"met",pp:"met",fr:"rencontrer"},
+  {base:"pay",past:"paid",pp:"paid",fr:"payer"},
+  {base:"put",past:"put",pp:"put",fr:"mettre"},
+  {base:"read",past:"read",pp:"read",fr:"lire"},
+  {base:"ride",past:"rode",pp:"ridden",fr:"monter (vélo)"},
+  {base:"run",past:"ran",pp:"run",fr:"courir"},
+  {base:"say",past:"said",pp:"said",fr:"dire"},
+  {base:"see",past:"saw",pp:"seen",fr:"voir"},
+  {base:"sell",past:"sold",pp:"sold",fr:"vendre"},
+  {base:"send",past:"sent",pp:"sent",fr:"envoyer"},
+  {base:"show",past:"showed",pp:"shown",fr:"montrer"},
+  {base:"sing",past:"sang",pp:"sung",fr:"chanter"},
+  {base:"sleep",past:"slept",pp:"slept",fr:"dormir"},
+  {base:"speak",past:"spoke",pp:"spoken",fr:"parler"},
+  {base:"spend",past:"spent",pp:"spent",fr:"dépenser"},
+  {base:"stand",past:"stood",pp:"stood",fr:"se tenir"},
+  {base:"swim",past:"swam",pp:"swum",fr:"nager"},
+  {base:"take",past:"took",pp:"taken",fr:"prendre"},
+  {base:"teach",past:"taught",pp:"taught",fr:"enseigner"},
+  {base:"tell",past:"told",pp:"told",fr:"dire / raconter"},
+  {base:"think",past:"thought",pp:"thought",fr:"penser"},
+  {base:"throw",past:"threw",pp:"thrown",fr:"lancer"},
+  {base:"understand",past:"understood",pp:"understood",fr:"comprendre"},
+  {base:"wake",past:"woke",pp:"woken",fr:"se réveiller"},
+  {base:"wear",past:"wore",pp:"worn",fr:"porter (vêtement)"},
+  {base:"win",past:"won",pp:"won",fr:"gagner"},
+  {base:"write",past:"wrote",pp:"written",fr:"écrire"},
+];
+
+const LETTERS=['A','B','C','D'];
+function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+
+/* ─── THEORY ─── */
+function startTheory(){
+  show('theory-screen');
+  renderTable(VERBS);
+}
+function renderTable(list){
+  const tb=document.getElementById('verb-tbody');
+  tb.innerHTML='';
+  list.forEach(v=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="base-cell">${v.base}</td><td>${v.past}</td><td>${v.pp}</td><td class="fr-cell">${v.fr}</td>`;
+    tb.appendChild(tr);
+  });
+  document.getElementById('verb-count').textContent=`${list.length} verbe${list.length>1?'s':''}`;
+}
+function filterTable(){
+  const q=document.getElementById('verb-search').value.toLowerCase().trim();
+  const filtered=q?VERBS.filter(v=>v.base.includes(q)||v.past.includes(q)||v.pp.includes(q)||v.fr.includes(q)):VERBS;
+  renderTable(filtered);
+}
+
+/* ─── FLASHCARDS ─── */
+let flashVerbs=[],flashIdx=0,flashKnew=0,flashTodo=[],cardFlipped=false;
+function startFlash(){
+  flashVerbs=shuffle(VERBS);flashIdx=0;flashKnew=0;flashTodo=[];
+  show('flash-screen');renderFlash();
+}
+function renderFlash(){
+  const v=flashVerbs[flashIdx],n=flashVerbs.length;
+  document.getElementById('f-prog').style.width=`${(flashIdx/n)*100}%`;
+  document.getElementById('f-counter').textContent=`${flashIdx+1} / ${n}`;
+  document.getElementById('f-base').textContent=v.base;
+  document.getElementById('f-fr').textContent=v.fr;
+  document.getElementById('f-past').textContent=v.past;
+  document.getElementById('f-pp').textContent=v.pp;
+  document.getElementById('f-fr2').textContent=v.fr;
+  cardFlipped=false;
+  document.getElementById('flip-card').classList.remove('flipped');
+  document.getElementById('f-buttons').style.display='none';
+  document.getElementById('f-instr').textContent='Appuie sur la carte pour la retourner';
+}
+function flipCard(){
+  if(cardFlipped)return;cardFlipped=true;
+  document.getElementById('flip-card').classList.add('flipped');
+  document.getElementById('f-buttons').style.display='flex';
+  document.getElementById('f-instr').textContent='';
+}
+function flashAnswer(knew){
+  if(knew)flashKnew++;else flashTodo.push(flashVerbs[flashIdx]);
+  flashIdx++;
+  if(flashIdx>=flashVerbs.length)showFlashResults();else renderFlash();
+}
+function showFlashResults(){
+  show('flash-results');
+  const pct=Math.round(flashKnew/flashVerbs.length*100);
+  document.getElementById('fr-knew').textContent=flashKnew;
+  document.getElementById('fr-todo').textContent=flashTodo.length;
+  document.getElementById('fr-msg').textContent=pct>=80?'🌟 Excellent ! Tu maîtrises bien les verbes !':pct>=60?'💪 Bien ! Encore un peu de pratique.':'📖 Continue, tu vas y arriver !';
+  const div=document.getElementById('fr-list');div.innerHTML='';
+  if(flashTodo.length>0){
+    div.innerHTML=`<div style="font-size:0.75rem;font-weight:700;color:#bbc;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;margin-top:8px">À revoir (${flashTodo.length})</div>`;
+    flashTodo.forEach(v=>{
+      const el=document.createElement('div');el.className='ri ko';
+      el.innerHTML=`<span class="ri-icon">✗</span><div><div class="ri-q">${v.base} (${v.fr})</div><div class="ri-a">${v.past} / ${v.pp}</div></div>`;
+      div.appendChild(el);
+    });
+  }
+}
+
+/* ─── QCM ─── */
+let qcmQ=[],qcmCurrent=0,qcmScore=0,qcmAnswers=[];
+function startQCM(){
+  qcmQ=generateQCM(20);qcmCurrent=0;qcmScore=0;qcmAnswers=[];
+  show('qcm-screen');renderQ();
+}
+function generateQCM(n){
+  const pool=shuffle(VERBS).slice(0,n);
+  return pool.map(v=>{
+    const type=Math.floor(Math.random()*3);
+    let q,correct,exp;
+    const others=shuffle(VERBS.filter(x=>x!==v));
+    if(type===0){
+      q=`Quel est le prétérit de "${v.base}" (${v.fr}) ?`;
+      correct=v.past;
+      const wrongs=others.filter(x=>x.past!==v.past).slice(0,3).map(x=>x.past);
+      exp=`${v.base} → ${v.past} → ${v.pp} · (${v.fr})`;
+      return{tag:"Prétérit",q,choices:shuffle([correct,...wrongs]),a:correct,exp};
+    }else if(type===1){
+      q=`Quel est le participe passé de "${v.base}" (${v.fr}) ?`;
+      correct=v.pp;
+      const wrongs=others.filter(x=>x.pp!==v.pp).slice(0,3).map(x=>x.pp);
+      exp=`${v.base} → ${v.past} → ${v.pp} · (${v.fr})`;
+      return{tag:"Participe passé",q,choices:shuffle([correct,...wrongs]),a:correct,exp};
+    }else{
+      q=`Quel verbe correspond au prétérit "${v.past}" ?`;
+      correct=`${v.base} (${v.fr})`;
+      const wrongs=others.filter(x=>x.past!==v.past).slice(0,3).map(x=>`${x.base} (${x.fr})`);
+      exp=`${v.base} (${v.fr}) → prétérit : ${v.past}`;
+      return{tag:"Identification",q,choices:shuffle([correct,...wrongs]),a:correct,exp};
+    }
+  });
+}
+function renderQ(){
+  const q=qcmQ[qcmCurrent],n=qcmQ.length;
+  document.getElementById('q-prog').style.width=`${(qcmCurrent/n)*100}%`;
+  document.getElementById('q-counter').textContent=`${qcmCurrent+1} / ${n}`;
+  document.getElementById('q-tag').textContent=q.tag;
+  document.getElementById('q-score').textContent=`Score : ${qcmScore}`;
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('q-feedback').className='feedback';
+  document.getElementById('q-feedback').textContent='';
+  document.getElementById('q-next').classList.add('hidden');
+  document.getElementById('q-next').textContent=qcmCurrent===n-1?'Voir mes résultats →':'Question suivante →';
+  const div=document.getElementById('q-answers');div.innerHTML='';
+  q.choices.forEach((ch,i)=>{
+    const btn=document.createElement('button');
+    btn.className='answer-btn';
+    btn.innerHTML=`<span class="answer-letter">${LETTERS[i]}</span>${ch}`;
+    btn.dataset.choice=ch;
+    btn.onclick=()=>selectQ(ch,q.a,q.exp);
+    div.appendChild(btn);
+  });
+}
+function selectQ(chosen,correct,exp){
+  document.querySelectorAll('.answer-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.choice===correct)b.classList.add('correct');
+    else if(b.dataset.choice===chosen&&chosen!==correct)b.classList.add('wrong');
+  });
+  const fb=document.getElementById('q-feedback');
+  if(chosen===correct){qcmScore++;fb.className='feedback ok show';fb.textContent='✓ Bonne réponse ! '+exp;qcmAnswers.push({ok:true,q:qcmQ[qcmCurrent].q,a:correct});}
+  else{fb.className='feedback ko show';fb.textContent='✗ '+exp;qcmAnswers.push({ok:false,q:qcmQ[qcmCurrent].q,a:correct,chosen});}
+  document.getElementById('q-next').classList.remove('hidden');
+}
+function nextQ(){
+  qcmCurrent++;
+  if(qcmCurrent>=qcmQ.length)showQResults();else renderQ();
+}
+function showQResults(){
+  show('qcm-results');
+  const n=qcmQ.length,pct=Math.round(qcmScore/n*100);
+  document.getElementById('r-num').textContent=qcmScore;
+  document.getElementById('r-tot').textContent=`/ ${n}`;
+  document.getElementById('r-title').textContent=pct>=80?'Excellent !':pct>=60?'Bien joué !':pct>=40?'Pas mal !':'Continue !';
+  document.getElementById('r-sub').textContent=`${qcmScore} bonne${qcmScore>1?'s':''} réponse${qcmScore>1?'s':''} sur ${n} (${pct}%)`;
+  document.getElementById('r-msg').textContent=pct>=90?'🌟 Tu maîtrises les verbes irréguliers !':pct>=70?'💪 Encore quelques verbes à revoir.':pct>=50?'📖 Continue à t\'entraîner !':'🎯 Commence par la théorie puis les flashcards !';
+  document.getElementById('q-detail').style.display='none';
+  const list=document.getElementById('q-detail-list');list.innerHTML='';
+  qcmAnswers.forEach(ua=>{
+    const el=document.createElement('div');el.className=`ri ${ua.ok?'ok':'ko'}`;
+    el.innerHTML=`<span class="ri-icon">${ua.ok?'✓':'✗'}</span><div><div class="ri-q">${ua.q}</div><div class="ri-a">${ua.ok?`→ ${ua.a}`:`Bonne réponse : <strong>${ua.a}</strong>${ua.chosen?` (répondu : ${ua.chosen})`:`}`}</div></div>`;
+    list.appendChild(el);
+  });
+}
+function toggleQDetail(){const d=document.getElementById('q-detail');d.style.display=d.style.display==='none'?'block':'none';}
+
+/* ─── MATCHING GAME ─── */
+const MATCH_ROUNDS=5,MATCH_PAIR=6;
+let matchVerbs=[],matchRoundIdx=0,matchRound=[],matchRight=[],matchSelected=null,matchFound=new Set(),matchCorrect=0,matchTotal=0;
+function startMatch(){
+  matchVerbs=shuffle(VERBS);matchRoundIdx=0;matchCorrect=0;matchTotal=0;
+  show('match-screen');renderRound();
+}
+function renderRound(){
+  const total=MATCH_ROUNDS;
+  matchRound=matchVerbs.slice(matchRoundIdx*MATCH_PAIR,(matchRoundIdx+1)*MATCH_PAIR);
+  matchRight=shuffle(matchRound.map(v=>v.past));
+  matchSelected=null;matchFound=new Set();
+  document.getElementById('m-prog').style.width=`${(matchRoundIdx/total)*100}%`;
+  document.getElementById('m-counter').textContent=`Tour ${matchRoundIdx+1} / ${total}`;
+  document.getElementById('m-round-badge').textContent=`Tour ${matchRoundIdx+1} · 6 paires`;
+  document.getElementById('m-correct').textContent=matchCorrect;
+  document.getElementById('m-total').textContent=matchTotal;
+  document.getElementById('m-next-row').style.display='none';
+  document.getElementById('m-quit-btn').style.display='inline-block';
+  const left=document.getElementById('m-left');
+  const right=document.getElementById('m-right');
+  left.innerHTML='';right.innerHTML='';
+  matchRound.forEach((v,i)=>{
+    const btn=document.createElement('button');
+    btn.className='match-btn';
+    btn.dataset.idx=i;
+    btn.innerHTML=`<span>${v.base}</span><span class="match-fr">${v.fr}</span>`;
+    btn.onclick=()=>selectLeft(i);
+    left.appendChild(btn);
+  });
+  matchRight.forEach((past,j)=>{
+    const btn=document.createElement('button');
+    btn.className='match-btn';
+    btn.dataset.pastIdx=j;
+    btn.textContent=past;
+    btn.onclick=()=>selectRight(j,past);
+    right.appendChild(btn);
+  });
+}
+function getLeftBtns(){return document.getElementById('m-left').querySelectorAll('.match-btn');}
+function getRightBtns(){return document.getElementById('m-right').querySelectorAll('.match-btn');}
+function selectLeft(i){
+  if(matchFound.has(i))return;
+  matchSelected=i;
+  getLeftBtns().forEach(b=>{b.classList.remove('selected');});
+  document.getElementById('m-left').querySelectorAll('.match-btn')[i].classList.add('selected');
+}
+function selectRight(j,past){
+  if(matchSelected===null)return;
+  const leftBtns=getLeftBtns(),rightBtns=getRightBtns();
+  const correctPast=matchRound[matchSelected].past;
+  matchTotal++;
+  document.getElementById('m-total').textContent=matchTotal;
+  if(past===correctPast){
+    matchCorrect++;
+    matchFound.add(matchSelected);
+    leftBtns[matchSelected].classList.remove('selected');
+    leftBtns[matchSelected].classList.add('matched');
+    leftBtns[matchSelected].disabled=true;
+    rightBtns[j].classList.add('matched');
+    rightBtns[j].disabled=true;
+    document.getElementById('m-correct').textContent=matchCorrect;
+    matchSelected=null;
+    if(matchFound.size===MATCH_PAIR){
+      setTimeout(()=>{
+        matchRoundIdx++;
+        if(matchRoundIdx>=MATCH_ROUNDS){showMatchResults();}
+        else{document.getElementById('m-next-row').style.display='flex';document.getElementById('m-quit-btn').style.display='none';}
+      },400);
+    }
+  }else{
+    const selIdx=matchSelected;
+    rightBtns[j].classList.add('wrong-flash');
+    leftBtns[selIdx].classList.add('wrong-flash');
+    setTimeout(()=>{
+      rightBtns[j].classList.remove('wrong-flash');
+      leftBtns[selIdx].classList.remove('wrong-flash','selected');
+      matchSelected=null;
+    },450);
+  }
+}
+function nextRound(){renderRound();}
+function showMatchResults(){
+  show('match-results');
+  const pct=Math.round(matchCorrect/matchTotal*100);
+  document.getElementById('mr-correct').textContent=matchCorrect;
+  document.getElementById('mr-total').textContent=matchTotal;
+  document.getElementById('mr-msg').textContent=pct>=90?'🌟 Parfait ! Aucune hésitation !':pct>=70?'💪 Très bien ! Quelques doublons mais ça vient.':pct>=50?'📖 Continue à t\'entraîner, ça progresse !':'🎯 Révise d\'abord les flashcards puis reessaie !';
+}
+</script>
+</body>
+</html>
